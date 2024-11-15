@@ -1,0 +1,151 @@
+/* Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* Header */
+header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
+
+
+
+
+
+
+
+
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+header nav a {
+    margin: 0 25px; /* Aumenta a distância entre os links */
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+
+
+
+
+/* Banner */
+.banner {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
+    background-size: cover;
+    background-position: center;
+    padding: 20px; /* Espaçamento interno */
+    position: relative;
+}
+
+.banner img {
+    height: 500px;
+    max-width: 40%; /* Garantir responsividade */
+    margin-left: 20px; /* Espaçamento entre texto e imagem */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.texto-animado {
+    flex: 1; /* Garante que o texto ocupe um espaço fixo */
+    max-width: 60%; /* Define uma largura máxima para o texto */
+    display: flex;
+    justify-content: flex-start; /* Texto no início horizontalmente */
+    align-items: flex-start; /* Texto no topo verticalmente */
+    position: relative;
+}
+
+.texto-animado h3 {
+    font-size: 36px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #fff; /* Cursor no final do texto */
+    text-align: left;
+    animation: typing 6s steps(22, end) infinite, blink 0.5s step-end infinite;
+}
+
+/* Animação para digitação e apagamento */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 53ch; /* Tamanho total do texto */
+    }
+    100% {
+        width: 0;
+    }
+}
+
+/* Efeito do cursor piscando */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+    100% {
+        border-color: #fff;
+    }
+}
+
+
+
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Espaçamento entre os blocos */
+    padding: 30px;
+    width: 100vw;
+}
+
+.sobre-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Ajusta para telas menores */
+}
+
+.sobre-texto {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sobre-texto h2, .sobre-texto h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: rgba(231, 22, 22, 0.763);
+    text-align: center;
+}
+
+.sobre-texto p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #000;
+    text-align: justify;
+}
+
+.sobre-img img {
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
