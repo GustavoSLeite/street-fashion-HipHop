@@ -222,17 +222,3 @@ header nav a {
     font-weight: 800;
     margin-left: 20px;
 }
-
-.influencias{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-
-.influencias div img{
-    height: 300px;
-    border-radius: 20px;
-}
