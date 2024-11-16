@@ -23,7 +23,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); */
     z-index: 1000; /* Certifica-se de que o header fique acima de outros elementos */
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
     background-size: cover;
@@ -223,16 +223,29 @@ header nav a {
     margin-left: 20px;
 }
 
-.influencias{
-    height: 100%;
-    width: 100%;
+.influencias {
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column; /* Organiza as linhas verticalmente */
+    align-items: center; /* Centraliza as linhas horizontalmente */
+    gap: 20px; /* Espaço entre as linhas */
 }
 
+.linha1, .linha2 {
+    display: flex; /* Alinha as divs horizontalmente */
+    gap: 60px; /* Espaço entre as divs */
+    text-align: center;
+}
 
-.influencias div img{
-    height: 300px;
-    border-radius: 20px;
+.linha2{
+    margin-top: 40px;
+}
+
+.influencias div img {
+    height: 250px; /* Altura fixa */
+    width: 250px; /* Largura fixa */
+    border-radius: 20px; /* Cantos arredondados */
+    object-fit: cover; /* Garante que a imagem se ajuste ao tamanho definido */
 }
