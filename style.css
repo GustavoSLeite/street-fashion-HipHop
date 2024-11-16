@@ -15,35 +15,48 @@
 
 /* Header */
 header {
-    position: fixed; /* Mantém o header fixo no topo */
-    top: 0; /* Fixa na parte superior */
-    left: 0; /* Garante que comece da borda esquerda */
-    width: 100%; /* Ocupa a largura total da tela */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); */
-    z-index: 1000; /* Certifica-se de que o header fique acima de outros elementos */
+    display: flex; /* Utiliza Flexbox */
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: space-between; /* Espaça a imagem e o menu */
+    padding: 0 20px; /* Adiciona espaçamento horizontal */
+    z-index: 1000;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
     background-size: cover;
+   
+}
+
+/* Logo */
+header img {
+    height: 60px; /* Define a altura da imagem */
+    width: 70px;
+    margin-right: 20px; /* Adiciona espaçamento entre a logo e os links */
+    margin-top: 10px;
+   
+}
+
+/* Links do Menu */
+header nav {
+    display: flex; /* Organiza os links em linha */
+    align-items: center; /* Alinha verticalmente */
 }
 
 header nav a {
-    margin: 0 25px; /* Aumenta a distância entre os links */
-    font-size: 18px;
+    margin: 0 25px; /* Ajusta o espaçamento horizontal entre os links */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
     color: #fff;
-   
     font-weight: 500;
     text-decoration: none;
     transition: color 0.3s ease;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
-    transition: background-color 0.3s;
 }
 
 header nav a:hover {
-   
     text-decoration: underline;
     background-color: rgba(231, 22, 22, 0.8);
 }
