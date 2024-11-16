@@ -51,6 +51,7 @@ header nav a:hover {
     align-items: center;
     width: 100%;
     height: 100%;
+
 }
 
 /* Box de cadastro */
@@ -65,24 +66,27 @@ header nav a:hover {
 
 .cadastro-box {
     background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
-    padding: 30px 15px; /* Diminui o padding */
-    width: 400px; /* Diminui a largura */
+    border-radius: 15px; /* Reduz o arredondamento */
+    padding: 20px 10px; /* Diminui o padding */
+    width: 400px; /* Reduz a largura */
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Suaviza a sombra */
 }
 
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+ h1 {
+  
+    font-size: 1.8rem; /* Reduz o tamanho do título */
+    margin-bottom: 8px; /* Reduz o espaçamento inferior */
 }
 
 .subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
+   
+   
     color: #ccc;
-}
+    font-size: 0.85rem; /* Reduz o subtítulo */
+    margin-bottom: 15px; /* Ajusta o espaçamento inferior */
+} 
 
 /* form {
     display: flex;
@@ -113,10 +117,12 @@ form {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-    padding: 10px;
+ 
     color: #fff;
     margin-bottom: 15px;
     outline: none;
+    padding: 8px; /* Reduz o padding dos inputs */
+    font-size: 0.9rem; /* Ajusta o tamanho da fonte */
 }
 
 
@@ -145,12 +151,14 @@ form {
     background-color: rgba(231, 22, 22, 0.763);
     border: none;
     color: #fff;
-    padding: 10px;
+   
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+   
     transition: all 0.3s ease;
-}
+    padding: 8px 12px; /* Reduz o padding do botão */
+    font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+} 
 
 .botao:hover {
     background-color: rgba(231, 22, 22, 0.3);
@@ -180,3 +188,8 @@ form {
     color: #fff; /* Cor ao passar o mouse */
     text-decoration: underline; /* Adiciona sublinhado no hover */
 }
+
+
+
+
+
