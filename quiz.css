@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    /* background: linear-gradient(to right, #7f00ff, #4cb9eb); */
+    background-image: url(./img/BackgroundQuiz3.jpeg);
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    height: 100vh;
+  
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+main {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.question {
+    display: none;
+}
+
+.question.active {
+    display: block;
+}
+
+button {
+    background: rgba(231, 22, 22, 0.8);
+
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4cb9eb;
+}
+
+
+label {
+    display: block;
+    /* Faz as alternativas aparecerem em coluna */
+    margin: 10px 0;
+    /* Adiciona um pequeno espaçamento entre as alternativas */
+    cursor: pointer;
+    /* Faz o cursor mudar para uma mãozinha ao passar sobre a alternativa */
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    /* Espaçamento entre o botão de seleção e o texto */
+}
+
+h1 {
+    color: #000;
+    
+}
+
+.p-header {
+    color: #000;
+}
+
