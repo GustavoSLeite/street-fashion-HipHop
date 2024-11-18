@@ -4,13 +4,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+   
 }
 
-/* body{
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
-    background-size: cover;
-
-} */
+body{
+    min-width: 100vw;
+}
 
 
 /* Header */
@@ -73,6 +72,7 @@ header nav a:hover {
 
 /* Banner */
 .banner {
+    min-width: 100vw;
     height: 80vh;
     display: flex;
     align-items: center;
@@ -93,7 +93,7 @@ header nav a:hover {
 
 .texto-animado {
     flex: 1; /* Garante que o texto ocupe um espaço fixo */
-    max-width: 60%; /* Define uma largura máxima para o texto */
+    max-width: 65.9%; /* Reduzir a largura máxima para ver se ajuda */
     display: flex;
     justify-content: flex-start; /* Texto no início horizontalmente */
     align-items: flex-start; /* Texto no topo verticalmente */
