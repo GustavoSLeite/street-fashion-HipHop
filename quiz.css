@@ -1,25 +1,23 @@
 body {
     font-family: Arial, sans-serif;
-    /* background: linear-gradient(to right, #7f00ff, #4cb9eb); */
     background-image: url(./img/BackgroundQuiz3.jpeg);
     background-size: cover;
     color: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 10px; /* Mantém o padding reduzido */
     height: 100vh;
-  
 }
 
 header {
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduzi o espaçamento inferior */
 }
 
 main {
     background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 10px; /* Reduzi o padding interno */
+    border-radius: 15px;
+    max-width: 350px; /* Mantive a largura anterior */
+    margin: 10px auto; /* Mantém o espaçamento em volta */
 }
 
 .question {
@@ -32,61 +30,51 @@ main {
 
 button {
     background: rgba(231, 22, 22, 0.8);
-
     color: #fff;
     border: none;
-    padding: 10px 40px;
-    font-size: 16px;
+    padding: 5px 10px; /* Reduzi ainda mais o padding para deixar o botão mais compacto */
+    font-size: 12px; /* Reduzi o tamanho da fonte do botão */
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 15px;
     transition: 0.3s;
 }
 
 button:hover {
-    background: rgba(231, 22, 22, 0.4);
+    background: rgba(231, 22, 22, 0.6);
 }
-
 
 label {
     display: block;
-    /* Faz as alternativas aparecerem em coluna */
-    margin: 10px 0;
-    /* Adiciona um pequeno espaçamento entre as alternativas */
+    margin: 3px 0; /* Reduzi o espaçamento entre as alternativas */
     cursor: pointer;
-    /* Faz o cursor mudar para uma mãozinha ao passar sobre a alternativa */
 }
 
 input[type="radio"] {
-    margin-right: 10px;
-    /* Espaçamento entre o botão de seleção e o texto */
-   
+    margin-right: 3px; /* Reduzi o espaçamento entre o botão de seleção e o texto */
 }
-
-
 
 h1 {
     color: #000;
-    font-size: 50px;
-    
+    font-size: 36px; /* Mantive o tamanho da fonte do título */
 }
 
 .p-header {
     color: #000;
-    font-size: 20px;
+    font-size: 18px; /* Mantive o tamanho da fonte do parágrafo do cabeçalho */
 }
 
 main {
     background: rgba(0, 0, 0, 0.7);
-    padding: 15px; /* Diminui o padding interno */
+    padding: 10px; /* Mantém o padding interno reduzido */
     border-radius: 15px;
-    max-width: 400px; /* Reduz a largura máxima */
-    margin: 20px auto; /* Espaçamento em volta */
+    max-width: 350px; /* Mantive a largura anterior */
+    margin: 10px auto;
 }
 
 .question {
     display: none;
-    font-size: 14px; /* Fonte menor */
-    line-height: 1.4; /* Reduz o espaçamento entre linhas */
+    font-size: 12px; /* Reduzi o tamanho da fonte */
+    line-height: 1.1; /* Reduz o espaçamento entre linhas */
 }
 
 .question.active {
@@ -95,26 +83,26 @@ main {
 
 label {
     display: block;
-    font-size: 14px; /* Fonte menor para as opções */
-    margin: 8px 0; /* Menor espaçamento entre as alternativas */
+    font-size: 12px; /* Reduzi o tamanho da fonte das opções */
+    margin: 3px 0; /* Menor espaçamento entre as alternativas */
     cursor: pointer;
 }
 
 input[type="radio"] {
-    margin-right: 8px; /* Menor espaçamento entre o botão e o texto */
+    margin-right: 3px;
 }
 
 button {
     background: rgba(231, 22, 22, 0.8);
     color: #fff;
     border: none;
-    padding: 8px 20px; /* Botão mais compacto */
-    font-size: 14px; /* Fonte menor no botão */
+    padding: 5px 10px; /* Botão mais compacto */
+    font-size: 12px;
     cursor: pointer;
-    border-radius: 15px; /* Bordas mais suaves */
+    border-radius: 15px;
     transition: 0.3s;
 }
 
 button:hover {
-    background: rgba(231, 22, 22, 0.6); /* Ajuste para hover */
+    background: rgba(231, 22, 22, 0.6);
 }
