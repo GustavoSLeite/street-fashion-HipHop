@@ -20,7 +20,7 @@ function submitQuiz() {
         q6: "D",
         q7: "A",
         q8: "B",
-        q9: "C",
+        q9: "B",
         q10: "D"
     };
 
