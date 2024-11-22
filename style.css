@@ -1,0 +1,316 @@
+/* Geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+   
+}
+
+body{
+    min-width: 100vw;
+}
+
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex; /* Utiliza Flexbox */
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: space-between; /* Espaça a imagem e o menu */
+    padding: 0 20px; /* Adiciona espaçamento horizontal */
+    z-index: 1000;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
+    background-size: cover;
+    animation: fadeInLeftBig;
+    animation-duration: 1s;
+   
+}
+
+/* Logo */
+header img {
+    height: 60px; /* Define a altura da imagem */
+    width: 70px;
+    margin-right: 20px; /* Adiciona espaçamento entre a logo e os links */
+    margin-top: 10px;
+   
+}
+
+/* Links do Menu */
+header nav {
+    display: flex; /* Organiza os links em linha */
+    align-items: center; /* Alinha verticalmente */
+}
+
+header nav a {
+    margin: 0 25px; /* Ajusta o espaçamento horizontal entre os links */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+    background-color: rgba(231, 22, 22, 0.8);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Banner */
+.banner {
+    min-width: 100vw;
+    height: 84.3vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif); 
+    background-size: cover;
+    background-position: center;
+    padding: 20px; /* Espaçamento interno */
+    position: relative;
+    animation: fadeInRightBig;
+    animation-duration: 1s;
+}
+
+.banner img {
+    height: 500px;
+    max-width: 40%; /* Garantir responsividade */
+    margin-left: 20px; /* Espaçamento entre texto e imagem */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.texto-animado {
+    flex: 1; /* Garante que o texto ocupe um espaço fixo */
+    max-width: 65.9%; /* Reduzir a largura máxima para ver se ajuda */
+    display: flex;
+    justify-content: flex-start; /* Texto no início horizontalmente */
+    align-items: flex-start; /* Texto no topo verticalmente */
+    position: relative;
+}
+
+.texto-animado h3 {
+    font-size: 36px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #fff; /* Cursor no final do texto */
+    text-align: left;
+    animation: typing 6s steps(22, end) infinite, blink 0.5s step-end infinite;
+    margin-left: 50px;
+}
+
+/* Animação para digitação e apagamento */
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 53ch; /* Tamanho total do texto */
+    }
+    100% {
+        width: 0;
+    }
+}
+
+/* Efeito do cursor piscando */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+    100% {
+        border-color: #fff;
+    }
+}
+
+
+
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Espaçamento entre os blocos */
+    padding: 30px;
+    width: 100vw;
+    background-color: #fff;
+}
+
+.sobre-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Ajusta para telas menores */
+}
+
+.sobre-texto {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sobre-texto h2, .sobre-texto h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: rgba(231, 22, 22, 0.763);
+    text-align: center;
+}
+
+.sobre-texto p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #000;
+    text-align: justify;
+}
+
+.sobre-img img {
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.caracteristicas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que as divs quebrem para a próxima linha */
+    gap: 20px; /* Espaçamento entre as divs */
+    justify-content: center; /* Centraliza as divs horizontalmente */
+    padding: 20px;
+    background-color: #fff;
+}
+
+.caracteristicas div {
+    flex: 1 1 calc(30% - 20px); /* Reduz a largura relativa das divs para cerca de 30% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 2px solid rgba(231, 22, 22, 0.763);
+    border-radius: 10px;
+    padding: 30px; /* Maior preenchimento interno para destacar o conteúdo */
+    font-size: 18px;
+    font-weight: 400;
+    min-width: 200px; /* Define uma largura mínima menor */
+}
+
+.caracteristicas div h5 {
+    color: rgba(231, 22, 22, 0.763);
+    font-size: 24px; /* Aumenta o tamanho do título */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.caracteristicas div img {
+    height: 300px;
+}
+
+.slogan{
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+} 
+
+.slogan div{
+    width: 80vw;
+    height: 300px; /* Definido um valor fixo para altura */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
+    background-size: cover;
+    display: flex;
+    flex-direction: column; /* Alinha os conteúdos dos cards verticalmente */
+    justify-content: center;
+    align-items: center; /* Certifica-se de que o conteúdo esteja centralizado */
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin: 10px 0; /* Margem entre os cards */
+}
+
+.slogan div h4{
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 800;
+    margin-left: 20px;
+}
+
+.influencias {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Organiza as linhas verticalmente */
+    align-items: center; /* Centraliza as linhas horizontalmente */
+    gap: 20px; /* Espaço entre as linhas */
+}
+
+.linha1, .linha2 {
+    display: flex; /* Alinha as divs horizontalmente */
+    gap: 60px; /* Espaço entre as divs */
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.linha2{
+    margin-top: 40px;
+}
+
+.influencias div img {
+    height: 250px; /* Altura fixa */
+    width: 250px; /* Largura fixa */
+    border-radius: 20px; /* Cantos arredondados */
+    object-fit: cover; /* Garante que a imagem se ajuste ao tamanho definido */
+
+   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+footer{
+    width: 100vw;
+    height: 70px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    
+}
+
+footer img{
+    height: 30px;
+    width: 30px;
+}
+
+footer p{
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+footer div{
+    display: flex;
+    align-items:center ;
+    gap: 30px;
+    
+}
