@@ -26,6 +26,8 @@ header {
     z-index: 1000;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
     background-size: cover;
+    animation: fadeInLeftBig;
+    animation-duration: 1s;
    
 }
 
@@ -82,6 +84,8 @@ header nav a:hover {
     background-position: center;
     padding: 20px; /* Espaçamento interno */
     position: relative;
+    animation: fadeInRightBig;
+    animation-duration: 1s;
 }
 
 .banner img {

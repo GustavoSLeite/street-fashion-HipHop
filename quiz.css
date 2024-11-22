@@ -16,7 +16,7 @@ main {
     background: rgba(0, 0, 0, 0.7);
     padding: 10px; /* Reduzi o padding interno */
     border-radius: 15px;
-    max-width: 350px; /* Mantive a largura anterior */
+    max-width: 300px; /* Reduzi a largura máxima */
     margin: 10px auto; /* Mantém o espaçamento em volta */
 }
 
@@ -67,7 +67,7 @@ main {
     background: rgba(0, 0, 0, 0.7);
     padding: 10px; /* Mantém o padding interno reduzido */
     border-radius: 15px;
-    max-width: 350px; /* Mantive a largura anterior */
+    max-width: 300px; /* Reduzi a largura máxima */
     margin: 10px auto;
 }
 
