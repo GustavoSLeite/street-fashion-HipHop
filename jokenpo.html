@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Jokenpô</title>
+    <style>
+/* Estilo geral */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita rolagem */
+}
+
+/* Títulos e texto */
+h1 {
+    color: #333;
+    font-size: 24px; /* Reduzido para caber na tela */
+    margin: 10px 0;
+}
+
+p {
+    color: #555;
+    font-size: 16px; /* Reduzido */
+    margin-bottom: 10px; /* Menor margem */
+}
+
+/* Container dos jogadores */
+.players {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Menor espaçamento */
+    padding: 10px;
+    max-height: 60%; /* Limita a altura */
+    overflow: hidden;
+}
+
+/* Estilo individual de cada jogador */
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px; /* Reduzido */
+    height: 200px; /* Reduzido */
+    border-radius: 15px; /* Ajustado para o tamanho menor */
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+                rgba(0, 0, 0, 0.07) 0px 2px 4px,
+                rgba(0, 0, 0, 0.07) 0px 4px 8px,
+                rgba(0, 0, 0, 0.07) 0px 8px 16px;
+    background-color: #fff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.player:hover {
+    transform: translateY(-5px);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 8px,
+                rgba(0, 0, 0, 0.12) 0px 8px 16px;
+}
+
+/* Estilo das imagens */
+.player img {
+    width: 100%;
+    height: 70%; /* Reduzido para se ajustar */
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+}
+
+/* Nome do jogador */
+.player h5 {
+    margin: 0;
+    padding: 5px;
+    font-size: 14px; /* Reduzido */
+    color: #333;
+    text-align: center;
+}
+
+/* Jogadores selecionados */
+#selectedPlayers {
+    margin: 10px 0;
+    font-size: 16px; /* Reduzido */
+}
+
+/* Botão de iniciar jogo */
+#startGame {
+    padding: 8px 16px; /* Reduzido */
+    font-size: 14px; /* Reduzido */
+    color: #fff;
+    background-color: rgba(231, 22, 22, 0.8);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#startGame:hover {
+    background-color: rgba(231, 22, 22, 0.5);
+}
+
+#startGame:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Resultado e escolhas */
+.choices {
+    font-size: 18px; /* Reduzido */
+    margin: 10px 0;
+}
+
+.result {
+    font-size: 16px; /* Reduzido */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.winner {
+    color: green;
+}
+
+.loser {
+    color: red;
+}
+
+/* Rodapé */
+.footer {
+    margin-top: 10px;
+    font-size: 12px; /* Reduzido */
+    color: #777;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .player {
+        width: 120px;
+        height: 170px;
+    }
+
+    .player img {
+        height: 60%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <h1>Jogo de Jokenpô</h1>
+    <p>Escolha dois competidores:</p>
+    <div id="players" class="players">
+        <div class="player" onclick="selecionarJogador('Tupac')">
+            <img src="./img/Tupac.jpeg" alt="Tupac Shakur">
+            <h5>Tupac Shakur</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Biggie Smalls')">
+            <img src="./img/nototurousBigRed.jpg" alt="Biggie Smalls">
+            <h5>Biggie Smalls (The Notorious B.I.G.)</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Snoop Dogg')">
+            <img src="./img/SnoopyDogCinza.jpg" alt="Snoop Dogg">
+            <h5>Snoop Dogg</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Jay-Z')">
+            <img src="./img/JayZ.jpg" alt="Jay-Z">
+            <h5>Jay-Z</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Will Smith')">
+            <img src="./img/WillSmithRed.jpg" alt="Will Smith">
+            <h5>Will Smith</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Missy Elliott')">
+            <img src="./img/missy-elliott-2.jpg" alt="Missy Elliott">
+            <h5>Missy Elliott</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Pharrell Williams')">
+            <img src="./img/pharrell williams.avif" alt="Pharrell Williams">
+            <h5>Pharrell Williams</h5>
+        </div>
+        <div class="player" onclick="selecionarJogador('Run-D.M.C.')">
+            <img src="./img/runDMC.avif" alt="Run-D.M.C.">
+            <h5>Run-D.M.C.</h5>
+        </div>
+    </div>
+    <div id="selectedPlayers">
+        <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span></p>
+        <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
+    </div>
+    <div class="result" id="result"></div>
+
+
+
+    <script>
+        const escolhas = ["Pedra", "Papel", "Tesoura"];
+        const icones = {
+            "Pedra": "<img src='./img/pedra.png' alt='Pedra' style='width: 30px; height: 30px;'>",
+            "Papel": "<img src='./img/papel.png' alt='Papel' style='width: 30px; height: 30px;'>",
+            "Tesoura": "<img src='./img/tesoura.png' alt='Tesoura' style='width: 30px; height: 30px;'>"
+        };
+    
+        var  jogadoresSelecionados = [];
+    
+        // Selecionar jogadores
+        function selecionarJogador(jogador) {
+            if (jogadoresSelecionados.length < 2 && !jogadoresSelecionados.includes(jogador)) {
+                jogadoresSelecionados.push(jogador);
+                document.getElementById(`player${jogadoresSelecionados.length}`).textContent = jogador;
+    
+                if (jogadoresSelecionados.length === 2) {
+                    document.getElementById("startGame").disabled = false;
+                }
+            } else {
+                alert("Dois jogadores já foram selecionados ou jogador já está escolhido.");
+            }
+        }
+    
+        // Jogar
+        function playGame() {
+            const escolhasJogadores = jogadoresSelecionados.map(() => getRandomChoice());
+            const resultado = decideWinner(escolhasJogadores[0], escolhasJogadores[1]);
+    
+            document.getElementById("result").innerHTML = `
+                <div class="choices">
+                    <p><strong>${jogadoresSelecionados[0]}:</strong> ${icones[escolhasJogadores[0]]} (${escolhasJogadores[0]})</p>
+                    <p><strong>${jogadoresSelecionados[1]}:</strong> ${icones[escolhasJogadores[1]]} (${escolhasJogadores[1]})</p>
+                </div>
+                <p><strong>Resultado:</strong> ${resultado}</p>
+            `;
+        }
+    
+        // Obter uma escolha aleatória
+        function getRandomChoice() {
+            return escolhas[Math.floor(Math.random() * escolhas.length)];
+        }
+    
+        // Decidir o vencedor
+        function decideWinner(choice1, choice2) {
+            if (choice1 === choice2) return "Empate!";
+            if (
+                (choice1 === "Pedra" && choice2 === "Tesoura") ||
+                (choice1 === "Tesoura" && choice2 === "Papel") ||
+                (choice1 === "Papel" && choice2 === "Pedra")
+            ) {
+                return `${jogadoresSelecionados[0]} venceu!`;
+            }
+            return `${jogadoresSelecionados[1]} venceu!`;
+        }
+    </script>
+    
+    
+    
+</body>
+</html>

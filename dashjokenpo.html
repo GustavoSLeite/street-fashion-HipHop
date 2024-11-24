@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpô com Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .players {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 120px;
+            height: 180px;
+            background-color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .player img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .player h5 {
+            margin: 5px 0;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        #startGame {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-top: 10px;
+            background-color: #7f00ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dashboard {
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dashboard canvas {
+            max-width: 100%;
+            height: 200px;
+        }
+
+        #gameDetails {
+            margin-top: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        #gameDetails p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Jokenpô com Dashboard</h1>
+    <div class="content">
+        <p>Escolha dois competidores:</p>
+        <div id="players" class="players">
+            <div class="player" onclick="selecionarJogador('Tupac')">
+                <img src="./img/Tupac.jpeg" alt="Tupac Shakur">
+                <h5>Tupac Shakur</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Biggie Smalls')">
+                <img src="./img/nototurousBigRed.jpg" alt="Biggie Smalls">
+                <h5>Biggie Smalls (The Notorious B.I.G.)</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Snoop Dogg')">
+                <img src="./img/SnoopyDogCinza.jpg" alt="Snoop Dogg">
+                <h5>Snoop Dogg</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Jay-Z')">
+                <img src="./img/JayZ.jpg" alt="Jay-Z">
+                <h5>Jay-Z</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Will Smith')">
+                <img src="./img/WillSmithRed.jpg" alt="Will Smith">
+                <h5>Will Smith</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Missy Elliott')">
+                <img src="./img/missy-elliott-2.jpg" alt="Missy Elliott">
+                <h5>Missy Elliott</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Pharrell Williams')">
+                <img src="./img/pharrell williams.avif" alt="Pharrell Williams">
+                <h5>Pharrell Williams</h5>
+            </div>
+            <div class="player" onclick="selecionarJogador('Run-D.M.C.')">
+                <img src="./img/runDMC.avif" alt="Run-D.M.C.">
+                <h5>Run-D.M.C.</h5>
+            </div>
+        </div>
+        <div id="selectedPlayers">
+            <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span></p>
+            <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
+        </div>
+        <div class="dashboard">
+            <h3>Dashboard</h3>
+            <canvas id="scoreChart"></canvas>
+            <div id="gameDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        const escolhas = ["Pedra", "Papel", "Tesoura"];
+        const scores = {
+            Tupac: 50, "Biggie Smalls": 50, "Snoop Dogg": 50,
+            "Jay-Z": 50, "Will Smith": 50, "Missy Elliott": 50,
+            "Pharrell Williams": 50, "Run-D.M.C.": 50
+        };
+
+        let jogadoresSelecionados = [];
+        let chart;
+
+        function selecionarJogador(jogador) {
+            if (jogadoresSelecionados.length < 2 && !jogadoresSelecionados.includes(jogador)) {
+                jogadoresSelecionados.push(jogador);
+                document.getElementById(`player${jogadoresSelecionados.length}`).textContent = jogador;
+
+                if (jogadoresSelecionados.length === 2) {
+                    document.getElementById("startGame").disabled = false;
+                }
+            } else {
+                alert("Dois jogadores já foram selecionados ou jogador já está escolhido.");
+            }
+        }
+
+        function playGame() {
+            const escolhasJogadores = jogadoresSelecionados.map(() => getRandomChoice());
+            const resultado = decideWinner(escolhasJogadores[0], escolhasJogadores[1]);
+
+            displayGameDetails(escolhasJogadores, resultado);
+            updateScores(resultado);
+            updateChart();
+        }
+
+        function getRandomChoice() {
+            return escolhas[Math.floor(Math.random() * escolhas.length)];
+        }
+
+        function decideWinner(choice1, choice2) {
+            if (choice1 === choice2) return "Empate";
+            if (
+                (choice1 === "Pedra" && choice2 === "Tesoura") ||
+                (choice1 === "Tesoura" && choice2 === "Papel") ||
+                (choice1 === "Papel" && choice2 === "Pedra")
+            ) {
+                return jogadoresSelecionados[0];
+            }
+            return jogadoresSelecionados[1];
+        }
+
+        function displayGameDetails(choices, winner) {
+            const gameDetails = document.getElementById("gameDetails");
+            const details = `
+                <p>${jogadoresSelecionados[0]}: ${choices[0]}</p>
+                <p>${jogadoresSelecionados[1]}: ${choices[1]}</p>
+                <p><strong>Vencedor:</strong> ${winner === "Empate" ? "Empate" : winner}</p>
+            `;
+            gameDetails.innerHTML = details;
+        }
+
+        function updateScores(winner) {
+            if (winner !== "Empate") {
+                scores[winner] += 10;
+                const loser = jogadoresSelecionados.find(j => j !== winner);
+                scores[loser] -= 10;
+            }
+        }
+
+        function updateChart() {
+            chart.data.datasets[0].data = Object.values(scores);
+            chart.update();
+        }
+
+        function initChart() {
+            const ctx = document.getElementById("scoreChart").getContext("2d");
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(scores),
+                    datasets: [{
+                        label: 'Pontuação',
+                        data: Object.values(scores),
+                        backgroundColor: [
+                            '#7f00ff', '#e11616', '#4cb9eb', '#34eb6e', 
+                            '#ffa500', '#ff1493', '#00ced1', '#ff4500'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+        }
+
+        window.onload = initChart;
+    </script>
+</body>
+</html>
