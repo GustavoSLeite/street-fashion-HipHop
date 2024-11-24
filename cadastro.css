@@ -3,7 +3,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif); 
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -20,10 +20,10 @@ header {
     left: 0;
     width: 100%;
     height: 70px;
-    display: flex; /* Utiliza Flexbox */
-    align-items: center; /* Alinha verticalmente ao centro */
-    justify-content: space-between; /* Espaça a imagem e o menu */
-    padding: 0 20px; /* Adiciona espaçamento horizontal */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
     z-index: 1000;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)), url(./img/gradientRed.avif);
     background-size: cover;
@@ -31,21 +31,21 @@ header {
 
 /* Logo */
 header img {
-    height: 100px; 
+    height: 100px;
     width: 150px;
-    margin-right: 20px; /* Adiciona espaçamento entre a logo e os links */
+    margin-right: 20px;
     margin-top: 10px;
 }
 
 /* Links do Menu */
 header nav {
-    display: flex; /* Organiza os links em linha */
-    align-items: center; /* Alinha verticalmente */
+    display: flex;
+    align-items: center;
 }
 
 header nav a {
-    margin: 0 25px; /* Ajusta o espaçamento horizontal entre os links */
-    font-size: 16px; /* Ajusta o tamanho da fonte */
+    margin: 0 25px;
+    font-size: 16px;
     color: #fff;
     font-weight: 500;
     text-decoration: none;
@@ -58,6 +58,7 @@ header nav a:hover {
     text-decoration: underline;
     background-color: rgba(231, 22, 22, 0.8);
 }
+
 /* Ajuste do container */
 .cadastro-container {
     margin-top: 80px;
@@ -65,81 +66,72 @@ header nav a:hover {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-
+    height: calc(100vh - 70px);
+    padding-top: 70px;
+    box-sizing: border-box;
 }
 
 /* Box de cadastro */
-/* .cadastro-box {
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
-    padding: 40px 20px;
-    width: 500px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-} */
-
 .cadastro-box {
     background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 15px; /* Reduz o arredondamento */
-    padding: 20px 10px; /* Diminui o padding */
-    width: 400px; /* Reduz a largura */
+    border-radius: 15px;
+    padding: 20px 20px;
+    width: 600px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Suaviza a sombra */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+   
 }
 
-
- h1 {
-  
-    font-size: 1.8rem; /* Reduz o tamanho do título */
-    margin-bottom: 8px; /* Reduz o espaçamento inferior */
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
 }
 
 .subtitle {
-   
-   
     color: #ccc;
-    font-size: 0.85rem; /* Reduz o subtítulo */
-    margin-bottom: 15px; /* Ajusta o espaçamento inferior */
-} 
-
-/* form {
-    display: flex;
-    flex-direction: column;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
 }
 
-.campo {
-    text-align: left;
-    margin-bottom: 15px;
-} */
-
+/* Formulário */
 form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alinha os elementos no centro horizontalmente */
+    align-items: center;
 }
 
-.campo {
-    width: 100%; /* Mantém o campo responsivo */
-    text-align: left; /* Mantém o texto dos labels alinhado à esquerda */
+form .linha {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 15px;
-    max-width: 400px; /* Opcional: Define uma largura máxima para o campo */
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+form .linha .campo {
+    flex: 1;
+    margin-right: 10px;
+}
+
+form .linha .campo:last-child {
+    margin-right: 0;
+}
+
+form .linha:first-child .campo {
+    flex: 1; /* Campo de código ocupa a linha inteira */
 }
 
 .campo input {
-    width: 100%; /* Garante que o input ocupe o máximo do campo */
-    box-sizing: border-box; /* Impede que o padding expanda o input */
+    width: 100%;
+    box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
- 
     color: #fff;
-    margin-bottom: 15px;
     outline: none;
-    padding: 8px; /* Reduz o padding dos inputs */
-    font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+    padding: 8px;
+    font-size: 0.9rem;
 }
-
 
 .campo span {
     font-size: 0.9rem;
@@ -148,32 +140,21 @@ form {
     display: block;
 }
 
-/* .campo input {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    padding: 10px;
-    color: #fff;
-    outline: none;
-    width: 90%;
-} */
-
 .campo input::placeholder {
     color: #ccc;
 }
 
+/* Botão */
 .botao {
     background-color: rgba(231, 22, 22, 0.763);
     border: none;
     color: #fff;
-   
     border-radius: 5px;
     cursor: pointer;
-   
     transition: all 0.3s ease;
-    padding: 8px 12px; /* Reduz o padding do botão */
-    font-size: 0.9rem; /* Ajusta o tamanho da fonte */
-} 
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
 
 .botao:hover {
     background-color: rgba(231, 22, 22, 0.3);
@@ -189,22 +170,18 @@ form {
     width: 50px;
 }
 
+/* Link de login */
 .login-link {
-    display: block; /* Faz o link ocupar uma linha inteira */
-    margin-top: 15px; /* Espaço entre o botão e o link */
-    font-size: 0.9rem; /* Ajuste o tamanho da fonte */
-    color: #ccc; /* Cor do link */
-    text-decoration: none; /* Remove o sublinhado */
-    transition: color 0.3s ease; /* Adiciona transição ao hover */
-    text-align: center; /* Centraliza o texto */
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-align: center;
 }
 
 .login-link:hover {
-    color: #fff; /* Cor ao passar o mouse */
-    text-decoration: underline; /* Adiciona sublinhado no hover */
+    color: #fff;
+    text-decoration: underline;
 }
-
-
-
-
-
