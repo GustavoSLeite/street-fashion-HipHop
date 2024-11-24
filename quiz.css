@@ -1,110 +1,103 @@
+/* Estilo geral do corpo */
 body {
     font-family: Arial, sans-serif;
     background-image: url(./img/BackgroundQuiz3.jpeg);
     background-size: cover;
     color: #fff;
     text-align: center;
-    padding: 10px; /* Mantém o padding reduzido */
-    height: 100vh;
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove padding padrão */
+    height: 100vh; /* Altura da viewport */
+    overflow: hidden; /* Remove barras de rolagem na página */
 }
 
+/* Cabeçalho */
 header {
-    margin-bottom: 10px; /* Reduzi o espaçamento inferior */
+    margin-bottom: 10px; /* Espaçamento inferior */
 }
 
-main {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px; /* Reduzi o padding interno */
-    border-radius: 15px;
-    max-width: 300px; /* Reduzi a largura máxima */
-    margin: 10px auto; /* Mantém o espaçamento em volta */
+
+
+/* Estilo do formulário */
+form {
+    height: 300px; /* Altura máxima como 70% da viewport */
+    overflow-y: auto; /* Adiciona scroll vertical se necessário */
+    margin: 0 auto; /* Centraliza o formulário */
+    padding: 10px; /* Espaçamento interno */
+    background: rgba(0, 0, 0, 0.8); /* Fundo com opacidade */
+    border-radius: 20px; /* Bordas arredondadas */
+    width: 500px; /* Limita a largura máxima */
 }
 
+/* Estilo das questões */
 .question {
-    display: none;
+    display: none; /* Esconde as perguntas por padrão */
+    font-size: 14px; /* Reduz o tamanho do texto das perguntas */
+    line-height: 1.2; /* Reduz o espaçamento entre as linhas */
 }
 
 .question.active {
-    display: block;
+    display: block; /* Mostra a pergunta ativa */
 }
 
+/* Estilo das opções */
+label {
+    display: block;
+    font-size: 12px; /* Reduz o tamanho do texto das opções */
+    margin: 5px 0; /* Espaçamento entre opções */
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin-right: 5px; /* Espaço entre o botão de seleção e o texto */
+}
+
+/* Botões */
 button {
     background: rgba(231, 22, 22, 0.8);
     color: #fff;
     border: none;
-    padding: 5px 10px; /* Reduzi ainda mais o padding para deixar o botão mais compacto */
-    font-size: 12px; /* Reduzi o tamanho da fonte do botão */
+    padding: 5px 8px; /* Reduz o tamanho do botão */
+    font-size: 12px; /* Ajusta o texto do botão */
     cursor: pointer;
     border-radius: 15px;
     transition: 0.3s;
+    margin-top: 10px; /* Espaçamento no topo */
 }
 
 button:hover {
     background: rgba(231, 22, 22, 0.6);
 }
 
-label {
-    display: block;
-    margin: 3px 0; /* Reduzi o espaçamento entre as alternativas */
-    cursor: pointer;
-}
-
-input[type="radio"] {
-    margin-right: 3px; /* Reduzi o espaçamento entre o botão de seleção e o texto */
-}
-
+/* Estilo do título e cabeçalho */
 h1 {
     color: #000;
-    font-size: 36px; /* Mantive o tamanho da fonte do título */
+    font-size: 24px; /* Reduz o tamanho da fonte do título */
+    margin-bottom: 10px; /* Espaçamento inferior */
 }
 
 .p-header {
     color: #000;
-    font-size: 18px; /* Mantive o tamanho da fonte do parágrafo do cabeçalho */
+    font-size: 14px; /* Reduz o tamanho do texto do parágrafo do cabeçalho */
 }
 
-main {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px; /* Mantém o padding interno reduzido */
-    border-radius: 15px;
-    max-width: 300px; /* Reduzi a largura máxima */
-    margin: 10px auto;
-}
-
-.question {
-    display: none;
-    font-size: 12px; /* Reduzi o tamanho da fonte */
-    line-height: 1.1; /* Reduz o espaçamento entre linhas */
-}
-
-.question.active {
-    display: block;
-}
-
-label {
-    display: block;
-    font-size: 12px; /* Reduzi o tamanho da fonte das opções */
-    margin: 3px 0; /* Menor espaçamento entre as alternativas */
-    cursor: pointer;
-}
-
-input[type="radio"] {
-    margin-right: 3px;
-}
-
-button {
-    background: rgba(231, 22, 22, 0.8);
-    color: #fff;
-    border: none;
-    padding: 5px 10px; /* Botão mais compacto */
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 15px;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: rgba(231, 22, 22, 0.6);
+/* Ajuste geral para o design compacto */
+body, main, form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
+.resultado {
+    color: #000;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.8); /* Fundo branco com opacidade */
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 300px; /* Limita a largura */
+    margin: 10px auto; /* Centraliza o parágrafo */
+}

@@ -161,7 +161,7 @@
                 <label><input type="radio" name="q3" value="C"> Missy Elliott</label>
                 <label><input type="radio" name="q3" value="D"> MC Lyte</label>
                 <button type="button" onclick="nextQuestion(3)">Próxima</button>
-               
+
             </div>
 
             <div class="question" id="question4">
@@ -183,7 +183,8 @@
             </div>
 
             <div class="question" id="question6">
-                <p>6) Qual dessas artistas femininas trouxe um estilo provocativo e ousado para a moda Hip Hop nos anos 90?</p>
+                <p>6) Qual dessas artistas femininas trouxe um estilo provocativo e ousado para a moda Hip Hop nos anos
+                    90?</p>
                 <label><input type="radio" name="q6" value="A"> MC Lyte</label>
                 <label><input type="radio" name="q6" value="B"> Salt-N-Pepa</label>
                 <label><input type="radio" name="q6" value="C"> Missy Elliott</label>
@@ -192,7 +193,8 @@
             </div>
 
             <div class="question" id="question7">
-                <p>7) Qual grupo feminino é conhecido por popularizar o uso de jaquetas de couro e roupas oversized na moda Hip Hop?</p>
+                <p>7) Qual grupo feminino é conhecido por popularizar o uso de jaquetas de couro e roupas oversized na
+                    moda Hip Hop?</p>
                 <label><input type="radio" name="q7" value="A"> Salt-N-Pepa</label>
                 <label><input type="radio" name="q7" value="B"> Destiny's Child</label>
                 <label><input type="radio" name="q7" value="C"> TLC</label>
@@ -200,9 +202,10 @@
                 <button type="button" onclick="nextQuestion(7)">Próxima</button>
             </div>
 
-             
+
             <div class="question" id="question8">
-                <p>8) Qual ícone da moda Hip Hop é conhecido por misturar alta costura com roupas urbanas e por suas colaborações com designers de moda?</p>
+                <p>8) Qual ícone da moda Hip Hop é conhecido por misturar alta costura com roupas urbanas e por suas
+                    colaborações com designers de moda?</p>
                 <label><input type="radio" name="q8" value="A"> Biggie Smalls</label>
                 <label><input type="radio" name="q8" value="B"> Pharrell Williams</label>
                 <label><input type="radio" name="q8" value="C"> Tupac Shakur</label>
@@ -219,9 +222,10 @@
                 <button type="button" onclick="nextQuestion(9)">Próxima</button>
             </div>
 
-            
+
             <div class="question" id="question10">
-                <p>10) Qual dessas artistas femininas é conhecida por seu estilo eclético e suas colaborações com designers de moda?</p>
+                <p>10) Qual dessas artistas femininas é conhecida por seu estilo eclético e suas colaborações com
+                    designers de moda?</p>
                 <label><input type="radio" name="q10" value="A"> Nicki Minaj</label>
                 <label><input type="radio" name="q10" value="B"> Cardi B</label>
                 <label><input type="radio" name="q10" value="C"> Missy Elliott</label>
@@ -263,7 +267,8 @@
             }
 
             const result = document.getElementById("result");
-            result.innerHTML = `<p>Você acertou ${score} de ${Object.keys(answers).length} perguntas!</p>`;
+            result.innerHTML = `<p class="resultado">Você acertou ${score} de ${Object.keys(answers).length} perguntas!</p>`;
+
             form.style.display = "none";
 
             // Atualiza o gráfico
@@ -283,8 +288,8 @@
                             ' rgba(231, 22, 22, 0.8)'  // Vermelho para incorretas
                         ],
                         borderColor: [
-                            'rgba(75, 192, 192)', 
-                            ' rgba(231, 22, 22, 0.8)' 
+                            'rgba(75, 192, 192)',
+                            ' rgba(231, 22, 22, 0.8)'
                         ],
                         borderWidth: 1
                     }]
