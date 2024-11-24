@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -102,6 +103,7 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Jogo de Jokenpô com Dashboard</h1>
     <div class="content">
@@ -141,7 +143,8 @@
             </div>
         </div>
         <div id="selectedPlayers">
-            <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span></p>
+            <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span>
+            </p>
             <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
         </div>
         <div class="dashboard">
@@ -218,10 +221,27 @@
             }
         }
 
+        // function updateChart() {
+        //     chart.data.datasets[0].data = Object.values(scores);
+        //     chart.update();
+        // }
+
+
+
         function updateChart() {
+            // Atualiza os dados do gráfico
             chart.data.datasets[0].data = Object.values(scores);
+
+            // Atualiza as cores das barras
+            chart.data.datasets[0].backgroundColor = Object.keys(scores).map(jogador => {
+                return jogadoresSelecionados.includes(jogador) ? '#e11616' : '#000000'; // Se o jogador for selecionado, a barra fica vermelha, caso contrário, preta
+            });
+
+            // Atualiza o gráfico
             chart.update();
         }
+
+
 
         function initChart() {
             const ctx = document.getElementById("scoreChart").getContext("2d");
@@ -232,10 +252,7 @@
                     datasets: [{
                         label: 'Pontuação',
                         data: Object.values(scores),
-                        backgroundColor: [
-                            '#7f00ff', '#e11616', '#4cb9eb', '#34eb6e', 
-                            '#ffa500', '#ff1493', '#00ced1', '#ff4500'
-                        ]
+                        backgroundColor: Object.keys(scores).map(() => '#000000'), // Inicialmente todas as barras são pretas
                     }]
                 },
                 options: {
@@ -247,7 +264,9 @@
             });
         }
 
+
         window.onload = initChart;
     </script>
 </body>
+
 </html>
