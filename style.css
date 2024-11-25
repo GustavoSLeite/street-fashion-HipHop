@@ -186,40 +186,71 @@ header nav a:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-
 .caracteristicas {
-    display: flex;
-    flex-wrap: wrap; /* Permite que as divs quebrem para a próxima linha */
-    gap: 20px; /* Espaçamento entre as divs */
-    justify-content: center; /* Centraliza as divs horizontalmente */
-    padding: 20px;
-    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
+    gap: 30px; /* Espaçamento entre os itens */
+    padding: 50px 20px;
+    background-color: #fff; /* Fundo branco para a seção */
+    color: #fff; /* Texto branco para contraste */
 }
 
 .caracteristicas div {
-    flex: 1 1 calc(30% - 20px); /* Reduz a largura relativa das divs para cerca de 30% */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 2px solid rgba(231, 22, 22, 0.763);
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo consistente com as divs dos valores */
     border-radius: 10px;
-    padding: 30px; /* Maior preenchimento interno para destacar o conteúdo */
-    font-size: 18px;
-    font-weight: 400;
-    min-width: 200px; /* Define uma largura mínima menor */
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.caracteristicas div h5 {
-    color: rgba(231, 22, 22, 0.763);
-    font-size: 24px; /* Aumenta o tamanho do título */
+.caracteristicas div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Sombra mais intensa ao passar o mouse */
+}
+
+.caracteristicas img {
+    width: 100%;
+    height: 200px; /* Ajuste proporcional das imagens */
+    object-fit: cover; /* Sem distorção */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra discreta */
+}
+
+.caracteristicas h5 {
+    font-size: 1.4rem; /* Títulos mais destacados */
     font-weight: bold;
     margin-bottom: 15px;
+    color: #fff; /* Texto branco */
 }
 
-.caracteristicas div img {
-    height: 300px;
+.caracteristicas p {
+    font-size: 1rem; /* Texto levemente maior */
+    line-height: 1.6;
+    color: #ccc; /* Cinza claro para contraste suave */
 }
+
+/* Ajuste para garantir 5 características */
+.caracteristicas div:nth-child(4),
+.caracteristicas div:nth-child(5) {
+    grid-column: span 1 / span 1; /* Ocupam uma coluna cada na segunda linha */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .caracteristicas {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .caracteristicas {
+        grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+    }
+}
+
+
 
 .slogan{
     height: 100%;
@@ -253,6 +284,53 @@ header nav a:hover {
     font-weight: 800;
     margin-left: 20px;
 }
+
+.valores {
+    display: flex; /* Alinha os itens em uma linha */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Alinha os itens verticalmente */
+    gap: 40px; /* Espaçamento entre as caixas */
+    padding: 50px 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.valores div {
+    text-align: center;
+    width: 200px; /* Define largura fixa */
+    height: 200px; /* Define altura fixa */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Flexbox para centralizar conteúdo */
+    flex-direction: column; /* Organiza o conteúdo verticalmente */
+    justify-content: center; /* Centraliza verticalmente o conteúdo */
+    align-items: center; /* Centraliza horizontalmente o conteúdo */
+}
+
+.valores div:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(231, 22, 22, 0.7);
+}
+
+.valores img {
+    height: 80px;
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.valores h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+
 
 .influencias {
     height: 100vh;
