@@ -189,10 +189,9 @@ header nav a:hover {
 .caracteristicas {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
-    gap: 30px; /* Espaçamento entre os itens */
+    gap: 30px; /* Espaçamento entre as divs */
     padding: 50px 20px;
-    background-color: #fff; /* Fundo branco para a seção */
-    color: #fff; /* Texto branco para contraste */
+    background-color: #fff;
 }
 
 .caracteristicas div {
@@ -211,8 +210,8 @@ header nav a:hover {
 
 .caracteristicas img {
     width: 100%;
-    height: 200px; /* Ajuste proporcional das imagens */
-    object-fit: cover; /* Sem distorção */
+    height: 280px; /* Imagens maiores */
+    object-fit: cover; /* Preenchimento sem distorção */
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra discreta */
@@ -231,16 +230,14 @@ header nav a:hover {
     color: #ccc; /* Cinza claro para contraste suave */
 }
 
-/* Ajuste para garantir 5 características */
-.caracteristicas div:nth-child(4),
-.caracteristicas div:nth-child(5) {
-    grid-column: span 1 / span 1; /* Ocupam uma coluna cada na segunda linha */
-}
-
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     .caracteristicas {
         grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas menores */
+    }
+
+    .caracteristicas img {
+        height: 240px; /* Ajusta as imagens em telas menores */
     }
 }
 
@@ -248,7 +245,12 @@ header nav a:hover {
     .caracteristicas {
         grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
     }
+
+    .caracteristicas img {
+        height: 200px; /* Ajusta ainda mais as imagens */
+    }
 }
+
 
 
 
