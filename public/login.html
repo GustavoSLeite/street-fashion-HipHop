@@ -1,0 +1,228 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Login - Moda Hip Hop</title> 
+
+    <link rel="stylesheet" href="./css/login.css"> 
+
+</head> 
+
+<body> 
+
+ 
+
+    <header> 
+        <img src="./assets/imgs/HipHopLogo-removebg-preview (1).png" alt="">
+
+        <nav> 
+
+            <a href="./index.html">Home</a> 
+
+            <a href="#sobre">Sobre</a> 
+
+            <a href="#estilo">Estilo</a> 
+
+            <a href="#influencias">Influências</a> 
+
+            <a href="./login.html">Login</a> 
+
+            <a href="./cadastro.html">Cadastro</a> 
+
+        </nav> 
+
+    </header> 
+
+ 
+
+    <div class="login-container"> 
+
+        <div class="login-box"> 
+
+            <h1>Bem-vindo</h1> 
+
+            <p class="subtitle">Entre para explorar o universo do hip hop</p> 
+
+            <form> 
+
+                <label for="email">E-mail</label> 
+
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required> 
+
+                 
+
+                <label for="password">Senha</label> 
+
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required> 
+
+                 
+
+                <button onclick="entrar()" type="button" class="login-btn">Entrar</button> 
+
+            </form> 
+
+            <div class="extra-links"> 
+
+                <a href="#">Esqueceu sua senha?</a> 
+
+                <a href="#">Criar conta</a> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+ 
+
+    <div class="alerta_erro"> 
+
+        <div class="card_erro" id="cardErro"> 
+
+            <span id="mensagem_erro"></span> 
+
+        </div> 
+
+    </div> 
+
+ 
+
+    <div id="div_erros_login"></div> 
+
+ 
+
+    <script> 
+
+        function entrar() { 
+
+            var emailVar = document.getElementById('email').value; 
+
+            var senhaVar = document.getElementById('password').value; 
+
+ 
+
+            if (emailVar == "" || senhaVar == "") { 
+
+                cardErro.style.display = "block"; 
+
+                mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)"; 
+
+                return false; 
+
+            } else { 
+
+                setInterval(sumirMensagem, 5000); 
+
+            } 
+
+ 
+
+            console.log("FORM LOGIN: ", emailVar); 
+
+            console.log("FORM SENHA: ", senhaVar); 
+
+ 
+
+            fetch("/usuarios/autenticar", { 
+
+                method: "POST", 
+
+                headers: { 
+
+                    "Content-Type": "application/json" 
+
+                }, 
+
+                body: JSON.stringify({ 
+
+                    emailServer: emailVar, 
+
+                    senhaServer: senhaVar 
+
+                }) 
+
+            }).then(function (resposta) { 
+
+                console.log("ESTOU NO THEN DO entrar()!"); 
+
+ 
+
+                if (resposta.ok) { 
+
+                    console.log(resposta); 
+
+ 
+
+                    resposta.json().then(json => { 
+
+                        console.log(json); 
+
+                        console.log(JSON.stringify(json)); 
+
+                        sessionStorage.EMAIL_USUARIO = json.email; 
+
+                        sessionStorage.NOME_USUARIO = json.nome; 
+
+                        sessionStorage.ID_USUARIO = json.id; 
+
+                        sessionStorage.AQUARIOS = JSON.stringify(json.aquarios); 
+
+ 
+
+                        setTimeout(function () { 
+
+                            window.location = "paginaInicial.html"; 
+
+                        }, 500); 
+
+                    }); 
+
+ 
+
+                } else { 
+
+                    console.log("Houve um erro ao tentar realizar o login!"); 
+
+ 
+
+                    resposta.text().then(texto => { 
+
+                        console.error(texto); 
+
+                    }); 
+
+                } 
+
+ 
+
+            }).catch(function (erro) { 
+
+                console.log(erro); 
+
+            }); 
+
+ 
+
+            return false; 
+
+        } 
+
+ 
+
+        function sumirMensagem() { 
+
+            cardErro.style.display = "none"; 
+
+        } 
+
+    </script> 
+
+</body> 
+
+</html> 
