@@ -15,3 +15,11 @@ sr.reveal('.linha2', {
     origin: 'left'
 
 });
+
+sr.reveal('.valores', {
+    duration: 1000,
+    distance: '300px',
+    delay:200,
+    origin: 'left'
+
+});
