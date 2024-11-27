@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,12 +18,10 @@
             justify-content: flex-start;
             min-height: 100vh;
         }
-
         h1 {
             margin: 20px 0;
             color: #333;
         }
-
         .content {
             display: flex;
             flex-direction: column;
@@ -32,7 +29,6 @@
             width: 100%;
             max-width: 1200px;
         }
-
         .players {
             display: flex;
             flex-wrap: wrap;
@@ -40,7 +36,6 @@
             gap: 15px;
             margin-bottom: 20px;
         }
-
         .player {
             display: flex;
             flex-direction: column;
@@ -53,24 +48,20 @@
             transition: transform 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         .player:hover {
             transform: scale(1.05);
         }
-
         .player img {
             width: 100%;
             height: 70%;
             object-fit: cover;
             border-radius: 10px 10px 0 0;
         }
-
         .player h5 {
             margin: 5px 0;
             font-size: 12px;
             text-align: center;
         }
-
         #gameControl {
             display: flex;
             align-items: flex-start;
@@ -79,7 +70,6 @@
             max-width: 1200px;
             margin-top: 20px;
         }
-
         #selectedPlayers {
             flex: 1;
             display: flex;
@@ -88,7 +78,6 @@
             justify-content: flex-start;
             gap: 10px;
         }
-
         #startGame {
             padding: 10px 20px;
             font-size: 14px;
@@ -100,12 +89,10 @@
             margin-top: 10px;
             transition: background-color 0.3s ease;
         }
-
         #startGame:disabled {
             background-color: #aaa;
             cursor: not-allowed;
         }
-
         .dashboard {
             flex: 2;
             max-width: 600px;
@@ -116,24 +103,20 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
         .dashboard canvas {
             max-width: 100%;
             height: 200px;
         }
-
         #gameDetails {
             margin-top: 10px;
             text-align: left;
             font-size: 14px;
         }
-
         #gameDetails p {
             margin: 5px 0;
         }
     </style>
 </head>
-
 <body>
     <h1>Jogo de Jokenpô com Dashboard</h1>
     <div class="content">
@@ -175,8 +158,7 @@
         </div>
         <div id="gameControl">
             <div id="selectedPlayers">
-                <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span
-                        id="player2">---</span></p>
+                <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span></p>
                 <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
                 <div id="gameDetails"></div>
             </div>
@@ -186,29 +168,19 @@
             </div>
         </div>
     </div>
-
     <script>
         const scores = {
-            "Tupac": 50,
-            "Biggie Smalls": 50,
-            "Snoop Dogg": 50,
-            "Jay-Z": 50,
-            "Will Smith": 50,
-            "Missy Elliott": 50,
-            "Pharrell Williams": 50,
-            "Run-D.M.C.": 50
+            "Tupac": 50, "Biggie Smalls": 50, "Snoop Dogg": 50, "Jay-Z": 50, "Will Smith": 50, 
+            "Missy Elliott": 50, "Pharrell Williams": 50, "Run-D.M.C.": 50
         };
-
         const escolhas = ["Pedra", "Papel", "Tesoura"];
         let jogadoresSelecionados = [];
         let chart;
 
         function selecionarJogador(nome) {
             if (jogadoresSelecionados.length >= 2) return;
-
             if (!jogadoresSelecionados.includes(nome)) {
                 jogadoresSelecionados.push(nome);
-
                 if (jogadoresSelecionados.length === 1) {
                     document.getElementById("player1").textContent = nome;
                 } else if (jogadoresSelecionados.length === 2) {
@@ -224,16 +196,13 @@
             const [jogador1, jogador2] = jogadoresSelecionados;
             const escolha1 = escolhas[Math.floor(Math.random() * escolhas.length)];
             const escolha2 = escolhas[Math.floor(Math.random() * escolhas.length)];
-
             let resultado;
 
             if (escolha1 === escolha2) {
                 resultado = "Empate";
-            } else if (
-                (escolha1 === "Pedra" && escolha2 === "Tesoura") ||
-                (escolha1 === "Tesoura" && escolha2 === "Papel") ||
-                (escolha1 === "Papel" && escolha2 === "Pedra")
-            ) {
+            } else if ((escolha1 === "Pedra" && escolha2 === "Tesoura") || 
+                        (escolha1 === "Tesoura" && escolha2 === "Papel") || 
+                        (escolha1 === "Papel" && escolha2 === "Pedra")) {
                 resultado = `${jogador1} venceu!`;
                 scores[jogador1] += 10;
                 scores[jogador2] -= 5;
@@ -244,8 +213,9 @@
             }
 
             document.getElementById("gameDetails").innerHTML = `
+                <p><strong>Escolha de ${jogador1}:</strong> ${escolha1}</p>
+                <p><strong>Escolha de ${jogador2}:</strong> ${escolha2}</p>
                 <p><strong>Resultado:</strong> ${resultado}</p>
-                <p><strong>Escolhas:</strong> ${jogador1} escolheu ${escolha1} e ${jogador2} escolheu ${escolha2}</p>
             `;
 
             jogadoresSelecionados = [];
@@ -257,47 +227,41 @@
         }
 
         function atualizarGrafico() {
-            const ctx = document.getElementById("scoreChart").getContext("2d");
-
             if (chart) {
                 chart.destroy();
             }
 
-            const labels = Object.keys(scores);
-            const data = {
-                labels: labels,
-                datasets: [{
-                    label: 'Pontuação',
-                    data: labels.map(label => scores[label]),
-                    backgroundColor: labels.map(label => 
-                        jogadoresSelecionados.includes(label) ? '#FF0000' : '#000000' // Vermelho apenas para os selecionados
-                    ),
-                    borderColor: '#000000',
-                    borderWidth: 1
-                }]
-            };
-
+            const ctx = document.getElementById('scoreChart').getContext('2d');
             chart = new Chart(ctx, {
                 type: 'bar',
-                data: data,
+                data: {
+                    labels: Object.keys(scores),
+                    datasets: [{
+                        label: 'Pontuação',
+                        data: Object.values(scores),
+                        backgroundColor: Object.keys(scores).map(jogador => 
+                            jogadoresSelecionados.includes(jogador) ? 'red' : 'black'
+                        ),
+                        borderColor: 'black',
+                        borderWidth: 1
+                    }]
+                },
                 options: {
                     responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 10
+                            }
                         }
                     }
                 }
             });
         }
 
-        // Inicializa o gráfico ao carregar a página
-        window.onload = atualizarGrafico;
+        atualizarGrafico();
     </script>
 </body>
 </html>
