@@ -227,41 +227,47 @@
         }
 
         function atualizarGrafico() {
-            if (chart) {
-                chart.destroy();
-            }
+  const ctx = document.getElementById("scoreChart").getContext("2d");
 
-            const ctx = document.getElementById('scoreChart').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(scores),
-                    datasets: [{
-                        label: 'Pontuação',
-                        data: Object.values(scores),
-                        backgroundColor: Object.keys(scores).map(jogador => 
-                            jogadoresSelecionados.includes(jogador) ? 'red' : 'black'
-                        ),
-                        borderColor: 'black',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                stepSize: 10
-                            }
-                        }
-                    }
-                }
-            });
+  if (chart) {
+    chart.destroy();
+  }
+
+  const labels = Object.keys(scores);
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Pontuação',
+      data: labels.map(label => scores[label]),
+      backgroundColor: labels.map(label => 
+        jogadoresSelecionados.includes(label) ? '#FF0000' : '#000000' // Barra vermelha para os selecionados
+      ),
+      borderColor: '#000000', // Cor preta para todas as bordas
+      borderWidth: 1
+    }]
+  };
+
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
         }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
 
-        atualizarGrafico();
+
+      
     </script>
 </body>
 </html>
