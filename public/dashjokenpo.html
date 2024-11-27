@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpô com Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Estilos permanecem os mesmos */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -18,10 +18,12 @@
             justify-content: flex-start;
             min-height: 100vh;
         }
+
         h1 {
             margin: 20px 0;
             color: #333;
         }
+
         .content {
             display: flex;
             flex-direction: column;
@@ -29,6 +31,7 @@
             width: 100%;
             max-width: 1200px;
         }
+
         .players {
             display: flex;
             flex-wrap: wrap;
@@ -36,6 +39,7 @@
             gap: 15px;
             margin-bottom: 20px;
         }
+
         .player {
             display: flex;
             flex-direction: column;
@@ -46,38 +50,32 @@
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .player:hover {
-            transform: scale(1.05);
-        }
+
         .player img {
             width: 100%;
             height: 70%;
             object-fit: cover;
             border-radius: 10px 10px 0 0;
         }
+
         .player h5 {
             margin: 5px 0;
             font-size: 12px;
             text-align: center;
         }
-        #gameControl {
+
+        .game-section {
             display: flex;
+            flex-direction: row;
             align-items: flex-start;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1200px;
+            justify-content: center;
+            gap: 20px;
             margin-top: 20px;
+            width: 100%;
+            max-width: 900px;
         }
-        #selectedPlayers {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            gap: 10px;
-        }
+
         #startGame {
             padding: 10px 20px;
             font-size: 14px;
@@ -86,43 +84,42 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+            height: 50px;
+            align-self: center;
         }
-        #startGame:disabled {
-            background-color: #aaa;
-            cursor: not-allowed;
-        }
+
         .dashboard {
-            flex: 2;
-            max-width: 600px;
-            margin-left: 20px;
+            flex-grow: 1;
             background-color: #fff;
             border-radius: 10px;
             padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
         .dashboard canvas {
             max-width: 100%;
             height: 200px;
         }
+
         #gameDetails {
             margin-top: 10px;
             text-align: left;
             font-size: 14px;
         }
+
         #gameDetails p {
             margin: 5px 0;
         }
     </style>
 </head>
+
 <body>
     <h1>Jogo de Jokenpô com Dashboard</h1>
     <div class="content">
         <p>Escolha dois competidores:</p>
         <div id="players" class="players">
-            <!-- Lista de jogadores -->
             <div class="player" onclick="selecionarJogador('Tupac')">
                 <img src="./assets/imgs/Tupac.jpeg" alt="Tupac Shakur">
                 <h5>Tupac Shakur</h5>
@@ -148,7 +145,7 @@
                 <h5>Missy Elliott</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Pharrell Williams')">
-                <img src="./assets/imgs/pharrell%20williams.avif" alt="Pharrell Williams">
+                <img src="./assets/imgs/pharrell williams.avif" alt="Pharrell Williams">
                 <h5>Pharrell Williams</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Run-D.M.C.')">
@@ -156,118 +153,118 @@
                 <h5>Run-D.M.C.</h5>
             </div>
         </div>
-        <div id="gameControl">
-            <div id="selectedPlayers">
-                <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span></p>
-                <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
-                <div id="gameDetails"></div>
-            </div>
+        <div id="selectedPlayers">
+            <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span>
+            </p>
+        </div>
+        <div class="game-section">
+            <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
             <div class="dashboard">
-                <h3>Pontuações</h3>
+                <h3>Dashboard</h3>
                 <canvas id="scoreChart"></canvas>
+                <div id="gameDetails"></div>
             </div>
         </div>
     </div>
+
     <script>
-        const scores = {
-            "Tupac": 50, "Biggie Smalls": 50, "Snoop Dogg": 50, "Jay-Z": 50, "Will Smith": 50, 
-            "Missy Elliott": 50, "Pharrell Williams": 50, "Run-D.M.C.": 50
-        };
         const escolhas = ["Pedra", "Papel", "Tesoura"];
+        const scores = {
+            Tupac: 50, "Biggie Smalls": 50, "Snoop Dogg": 50,
+            "Jay-Z": 50, "Will Smith": 50, "Missy Elliott": 50,
+            "Pharrell Williams": 50, "Run-D.M.C.": 50
+        };
+
         let jogadoresSelecionados = [];
         let chart;
 
-        function selecionarJogador(nome) {
-            if (jogadoresSelecionados.length >= 2) return;
-            if (!jogadoresSelecionados.includes(nome)) {
-                jogadoresSelecionados.push(nome);
-                if (jogadoresSelecionados.length === 1) {
-                    document.getElementById("player1").textContent = nome;
-                } else if (jogadoresSelecionados.length === 2) {
-                    document.getElementById("player2").textContent = nome;
+        function selecionarJogador(jogador) {
+            if (jogadoresSelecionados.length < 2 && !jogadoresSelecionados.includes(jogador)) {
+                jogadoresSelecionados.push(jogador);
+                document.getElementById(`player${jogadoresSelecionados.length}`).textContent = jogador;
+
+                if (jogadoresSelecionados.length === 2) {
                     document.getElementById("startGame").disabled = false;
                 }
+            } else {
+                alert("Dois jogadores já foram selecionados ou jogador já está escolhido.");
             }
         }
 
         function playGame() {
-            if (jogadoresSelecionados.length !== 2) return;
+            const escolhasJogadores = jogadoresSelecionados.map(() => getRandomChoice());
+            const resultado = decideWinner(escolhasJogadores[0], escolhasJogadores[1]);
 
-            const [jogador1, jogador2] = jogadoresSelecionados;
-            const escolha1 = escolhas[Math.floor(Math.random() * escolhas.length)];
-            const escolha2 = escolhas[Math.floor(Math.random() * escolhas.length)];
-            let resultado;
+            displayGameDetails(escolhasJogadores, resultado);
+            updateScores(resultado);
+            updateChart();
+        }
 
-            if (escolha1 === escolha2) {
-                resultado = "Empate";
-            } else if ((escolha1 === "Pedra" && escolha2 === "Tesoura") || 
-                        (escolha1 === "Tesoura" && escolha2 === "Papel") || 
-                        (escolha1 === "Papel" && escolha2 === "Pedra")) {
-                resultado = `${jogador1} venceu!`;
-                scores[jogador1] += 10;
-                scores[jogador2] -= 5;
-            } else {
-                resultado = `${jogador2} venceu!`;
-                scores[jogador2] += 10;
-                scores[jogador1] -= 5;
+        function getRandomChoice() {
+            return escolhas[Math.floor(Math.random() * escolhas.length)];
+        }
+
+        function decideWinner(choice1, choice2) {
+            if (choice1 === choice2) return "Empate";
+            if (
+                (choice1 === "Pedra" && choice2 === "Tesoura") ||
+                (choice1 === "Tesoura" && choice2 === "Papel") ||
+                (choice1 === "Papel" && choice2 === "Pedra")
+            ) {
+                return jogadoresSelecionados[0];
             }
+            return jogadoresSelecionados[1];
+        }
 
-            document.getElementById("gameDetails").innerHTML = `
-                <p><strong>Escolha de ${jogador1}:</strong> ${escolha1}</p>
-                <p><strong>Escolha de ${jogador2}:</strong> ${escolha2}</p>
-                <p><strong>Resultado:</strong> ${resultado}</p>
+        function displayGameDetails(choices, winner) {
+            const gameDetails = document.getElementById("gameDetails");
+            const details = `
+                <p>${jogadoresSelecionados[0]}: ${choices[0]}</p>
+                <p>${jogadoresSelecionados[1]}: ${choices[1]}</p>
+                <p><strong>Vencedor:</strong> ${winner === "Empate" ? "Empate" : winner}</p>
             `;
-
-            jogadoresSelecionados = [];
-            document.getElementById("player1").textContent = "---";
-            document.getElementById("player2").textContent = "---";
-            document.getElementById("startGame").disabled = true;
-
-            atualizarGrafico();
+            gameDetails.innerHTML = details;
         }
 
-        function atualizarGrafico() {
-  const ctx = document.getElementById("scoreChart").getContext("2d");
-
-  if (chart) {
-    chart.destroy();
-  }
-
-  const labels = Object.keys(scores);
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: 'Pontuação',
-      data: labels.map(label => scores[label]),
-      backgroundColor: labels.map(label => 
-        jogadoresSelecionados.includes(label) ? '#FF0000' : '#000000' // Barra vermelha para os selecionados
-      ),
-      borderColor: '#000000', // Cor preta para todas as bordas
-      borderWidth: 1
-    }]
-  };
-
-  chart = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false
+        function updateScores(winner) {
+            if (winner !== "Empate") {
+                scores[winner] += 10;
+                const loser = jogadoresSelecionados.find(j => j !== winner);
+                scores[loser] -= 10;
+            }
         }
-      },
-      scales: {
-        y: {
-          beginAtZero: true
+
+        function updateChart() {
+            chart.data.datasets[0].data = Object.values(scores);
+            chart.data.datasets[0].backgroundColor = Object.keys(scores).map(jogador =>
+                jogadoresSelecionados.includes(jogador) ? '#e11616' : '#000000'
+            );
+            chart.update();
         }
-      }
-    }
-  });
-}
 
+        function initChart() {
+            const ctx = document.getElementById("scoreChart").getContext("2d");
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(scores),
+                    datasets: [{
+                        label: "Pontuação",
+                        data: Object.values(scores),
+                        backgroundColor: "#000000",
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
 
-      
+        document.addEventListener("DOMContentLoaded", initChart);
     </script>
 </body>
+
 </html>
