@@ -185,6 +185,31 @@
             displayGameDetails(escolhasJogadores, resultado);
             updateScores(resultado);
             updateChart();
+
+            // Envia os resultados para o backend
+            const data = {
+                player1: jogadoresSelecionados[0],  // Jogador 1
+                player2: jogadoresSelecionados[1],  // Jogador 2
+                choice1: escolhasJogadores[0],      // Escolha do jogador 1
+                choice2: escolhasJogadores[1],      // Escolha do jogador 2
+                winner: resultado === "Empate" ? "Empate" : resultado  // Quem ganhou
+            };
+
+            // Envia os dados para a API (backend)
+            fetch('/api/jokenpo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)  // Envia os dados em formato JSON
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Dados enviados com sucesso:', data);  // Sucesso
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar dados:', error);  // Se ocorrer um erro
+                });
         }
 
         function getRandomChoice() {
@@ -206,10 +231,10 @@
         function displayGameDetails(choices, winner) {
             const gameDetails = document.getElementById("gameDetails");
             const details = `
-                <p>${jogadoresSelecionados[0]}: ${choices[0]}</p>
-                <p>${jogadoresSelecionados[1]}: ${choices[1]}</p>
-                <p><strong>Vencedor:</strong> ${winner === "Empate" ? "Empate" : winner}</p>
-            `;
+        <p>${jogadoresSelecionados[0]}: ${choices[0]}</p>
+        <p>${jogadoresSelecionados[1]}: ${choices[1]}</p>
+        <p><strong>Vencedor:</strong> ${winner === "Empate" ? "Empate" : winner}</p>
+    `;
             gameDetails.innerHTML = details;
         }
 
@@ -221,15 +246,7 @@
             }
         }
 
-        // function updateChart() {
-        //     chart.data.datasets[0].data = Object.values(scores);
-        //     chart.update();
-        // }
-
-
-
         function updateChart() {
-            // Atualiza os dados do gráfico
             chart.data.datasets[0].data = Object.values(scores);
 
             // Atualiza as cores das barras
@@ -240,8 +257,6 @@
             // Atualiza o gráfico
             chart.update();
         }
-
-
 
         function initChart() {
             const ctx = document.getElementById("scoreChart").getContext("2d");
@@ -263,7 +278,6 @@
                 }
             });
         }
-
 
         window.onload = initChart;
     </script>
