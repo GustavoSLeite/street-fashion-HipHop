@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpô com Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -65,24 +66,42 @@
             text-align: center;
         }
 
+        #gameControl {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        #selectedPlayers {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
         #startGame {
             padding: 10px 20px;
             font-size: 14px;
-            margin-top: 10px;
             background-color: #7f00ff;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 0;
         }
 
         .dashboard {
-            width: 100%;
-            max-width: 900px;
+            flex: 2;
+            max-width: 600px;
+            margin-left: 20px;
             background-color: #fff;
             border-radius: 10px;
             padding: 15px;
-            margin-top: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
@@ -118,39 +137,41 @@
                 <h5>Biggie Smalls (The Notorious B.I.G.)</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Snoop Dogg')">
-                <img src="./assets/imgs//SnoopyDogCinza.jpg" alt="Snoop Dogg">
+                <img src="./assets/imgs/SnoopyDogCinza.jpg" alt="Snoop Dogg">
                 <h5>Snoop Dogg</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Jay-Z')">
-                <img src="./assets/imgs//JayZ.jpg" alt="Jay-Z">
+                <img src="./assets/imgs/JayZ.jpg" alt="Jay-Z">
                 <h5>Jay-Z</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Will Smith')">
-                <img src="./assets/imgs//WillSmithRed.jpg" alt="Will Smith">
+                <img src="./assets/imgs/WillSmithRed.jpg" alt="Will Smith">
                 <h5>Will Smith</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Missy Elliott')">
-                <img src="./assets/imgs//missy-elliott-2.jpg" alt="Missy Elliott">
+                <img src="./assets/imgs/missy-elliott-2.jpg" alt="Missy Elliott">
                 <h5>Missy Elliott</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Pharrell Williams')">
-                <img src="./assets/imgs//pharrell williams.avif" alt="Pharrell Williams">
+                <img src="./assets/imgs/pharrell%20williams.avif" alt="Pharrell Williams">
                 <h5>Pharrell Williams</h5>
             </div>
             <div class="player" onclick="selecionarJogador('Run-D.M.C.')">
-                <img src="./assets/imgs//runDMC.avif" alt="Run-D.M.C.">
+                <img src="./assets/imgs/runDMC.avif" alt="Run-D.M.C.">
                 <h5>Run-D.M.C.</h5>
             </div>
         </div>
-        <div id="selectedPlayers">
-            <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span id="player2">---</span>
-            </p>
-            <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
-        </div>
-        <div class="dashboard">
-            <h3>Dashboard</h3>
-            <canvas id="scoreChart"></canvas>
-            <div id="gameDetails"></div>
+        <div id="gameControl">
+            <div id="selectedPlayers">
+                <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span
+                        id="player2">---</span></p>
+                <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
+            </div>
+            <div class="dashboard">
+                <h3>Dashboard</h3>
+                <canvas id="scoreChart"></canvas>
+                <div id="gameDetails"></div>
+            </div>
         </div>
     </div>
 
