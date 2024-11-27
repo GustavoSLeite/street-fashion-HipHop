@@ -9,6 +9,7 @@ body {
     padding: 0; /* Remove padding padrão */
     height: 100vh; /* Altura da viewport */
     overflow: hidden; /* Remove barras de rolagem na página */
+    
 }
 
 /* Cabeçalho */
@@ -101,3 +102,4 @@ body, main, form {
     max-width: 300px; /* Limita a largura */
     margin: 10px auto; /* Centraliza o parágrafo */
 }
+

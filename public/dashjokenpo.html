@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpô com Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
+        /* Estilos permanecem os mesmos */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -51,6 +51,11 @@
             border-radius: 10px;
             cursor: pointer;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .player:hover {
+            transform: scale(1.05);
         }
 
         .player img {
@@ -92,7 +97,13 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 0;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        #startGame:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
         }
 
         .dashboard {
@@ -128,6 +139,7 @@
     <div class="content">
         <p>Escolha dois competidores:</p>
         <div id="players" class="players">
+            <!-- Lista de jogadores -->
             <div class="player" onclick="selecionarJogador('Tupac')">
                 <img src="./assets/imgs/Tupac.jpeg" alt="Tupac Shakur">
                 <h5>Tupac Shakur</h5>
@@ -166,142 +178,126 @@
                 <p><strong>Jogadores selecionados:</strong> <span id="player1">---</span> e <span
                         id="player2">---</span></p>
                 <button id="startGame" onclick="playGame()" disabled>Iniciar Jogo</button>
+                <div id="gameDetails"></div>
             </div>
             <div class="dashboard">
-                <h3>Dashboard</h3>
+                <h3>Pontuações</h3>
                 <canvas id="scoreChart"></canvas>
-                <div id="gameDetails"></div>
             </div>
         </div>
     </div>
 
     <script>
-        const escolhas = ["Pedra", "Papel", "Tesoura"];
         const scores = {
-            Tupac: 50, "Biggie Smalls": 50, "Snoop Dogg": 50,
-            "Jay-Z": 50, "Will Smith": 50, "Missy Elliott": 50,
-            "Pharrell Williams": 50, "Run-D.M.C.": 50
+            "Tupac": 50,
+            "Biggie Smalls": 50,
+            "Snoop Dogg": 50,
+            "Jay-Z": 50,
+            "Will Smith": 50,
+            "Missy Elliott": 50,
+            "Pharrell Williams": 50,
+            "Run-D.M.C.": 50
         };
 
+        const escolhas = ["Pedra", "Papel", "Tesoura"];
         let jogadoresSelecionados = [];
         let chart;
 
-        function selecionarJogador(jogador) {
-            if (jogadoresSelecionados.length < 2 && !jogadoresSelecionados.includes(jogador)) {
-                jogadoresSelecionados.push(jogador);
-                document.getElementById(`player${jogadoresSelecionados.length}`).textContent = jogador;
+        function selecionarJogador(nome) {
+            if (jogadoresSelecionados.length >= 2) return;
 
-                if (jogadoresSelecionados.length === 2) {
+            if (!jogadoresSelecionados.includes(nome)) {
+                jogadoresSelecionados.push(nome);
+
+                if (jogadoresSelecionados.length === 1) {
+                    document.getElementById("player1").textContent = nome;
+                } else if (jogadoresSelecionados.length === 2) {
+                    document.getElementById("player2").textContent = nome;
                     document.getElementById("startGame").disabled = false;
                 }
-            } else {
-                alert("Dois jogadores já foram selecionados ou jogador já está escolhido.");
             }
         }
 
         function playGame() {
-            const escolhasJogadores = jogadoresSelecionados.map(() => getRandomChoice());
-            const resultado = decideWinner(escolhasJogadores[0], escolhasJogadores[1]);
+            if (jogadoresSelecionados.length !== 2) return;
 
-            displayGameDetails(escolhasJogadores, resultado);
-            updateScores(resultado);
-            updateChart();
+            const [jogador1, jogador2] = jogadoresSelecionados;
+            const escolha1 = escolhas[Math.floor(Math.random() * escolhas.length)];
+            const escolha2 = escolhas[Math.floor(Math.random() * escolhas.length)];
 
-            // Envia os resultados para o backend
+            let resultado;
+
+            if (escolha1 === escolha2) {
+                resultado = "Empate";
+            } else if (
+                (escolha1 === "Pedra" && escolha2 === "Tesoura") ||
+                (escolha1 === "Tesoura" && escolha2 === "Papel") ||
+                (escolha1 === "Papel" && escolha2 === "Pedra")
+            ) {
+                resultado = `${jogador1} venceu!`;
+                scores[jogador1] += 10;
+                scores[jogador2] -= 5;
+            } else {
+                resultado = `${jogador2} venceu!`;
+                scores[jogador2] += 10;
+                scores[jogador1] -= 5;
+            }
+
+            document.getElementById("gameDetails").innerHTML = `
+                <p><strong>Resultado:</strong> ${resultado}</p>
+                <p><strong>Escolhas:</strong> ${jogador1} escolheu ${escolha1} e ${jogador2} escolheu ${escolha2}</p>
+            `;
+
+            jogadoresSelecionados = [];
+            document.getElementById("player1").textContent = "---";
+            document.getElementById("player2").textContent = "---";
+            document.getElementById("startGame").disabled = true;
+
+            atualizarGrafico();
+        }
+
+        function atualizarGrafico() {
+            const ctx = document.getElementById("scoreChart").getContext("2d");
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            const labels = Object.keys(scores);
             const data = {
-                player1: jogadoresSelecionados[0],  // Jogador 1
-                player2: jogadoresSelecionados[1],  // Jogador 2
-                choice1: escolhasJogadores[0],      // Escolha do jogador 1
-                choice2: escolhasJogadores[1],      // Escolha do jogador 2
-                winner: resultado === "Empate" ? "Empate" : resultado  // Quem ganhou
+                labels: labels,
+                datasets: [{
+                    label: 'Pontuação',
+                    data: labels.map(label => scores[label]),
+                    backgroundColor: labels.map(label => 
+                        jogadoresSelecionados.includes(label) ? '#FF0000' : '#000000' // Vermelho apenas para os selecionados
+                    ),
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
             };
 
-            // Envia os dados para a API (backend)
-            fetch('/api/jokenpo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)  // Envia os dados em formato JSON
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Dados enviados com sucesso:', data);  // Sucesso
-                })
-                .catch(error => {
-                    console.error('Erro ao enviar dados:', error);  // Se ocorrer um erro
-                });
-        }
-
-        function getRandomChoice() {
-            return escolhas[Math.floor(Math.random() * escolhas.length)];
-        }
-
-        function decideWinner(choice1, choice2) {
-            if (choice1 === choice2) return "Empate";
-            if (
-                (choice1 === "Pedra" && choice2 === "Tesoura") ||
-                (choice1 === "Tesoura" && choice2 === "Papel") ||
-                (choice1 === "Papel" && choice2 === "Pedra")
-            ) {
-                return jogadoresSelecionados[0];
-            }
-            return jogadoresSelecionados[1];
-        }
-
-        function displayGameDetails(choices, winner) {
-            const gameDetails = document.getElementById("gameDetails");
-            const details = `
-        <p>${jogadoresSelecionados[0]}: ${choices[0]}</p>
-        <p>${jogadoresSelecionados[1]}: ${choices[1]}</p>
-        <p><strong>Vencedor:</strong> ${winner === "Empate" ? "Empate" : winner}</p>
-    `;
-            gameDetails.innerHTML = details;
-        }
-
-        function updateScores(winner) {
-            if (winner !== "Empate") {
-                scores[winner] += 10;
-                const loser = jogadoresSelecionados.find(j => j !== winner);
-                scores[loser] -= 10;
-            }
-        }
-
-        function updateChart() {
-            chart.data.datasets[0].data = Object.values(scores);
-
-            // Atualiza as cores das barras
-            chart.data.datasets[0].backgroundColor = Object.keys(scores).map(jogador => {
-                return jogadoresSelecionados.includes(jogador) ? '#e11616' : '#000000'; // Se o jogador for selecionado, a barra fica vermelha, caso contrário, preta
-            });
-
-            // Atualiza o gráfico
-            chart.update();
-        }
-
-        function initChart() {
-            const ctx = document.getElementById("scoreChart").getContext("2d");
             chart = new Chart(ctx, {
                 type: 'bar',
-                data: {
-                    labels: Object.keys(scores),
-                    datasets: [{
-                        label: 'Pontuação',
-                        data: Object.values(scores),
-                        backgroundColor: Object.keys(scores).map(() => '#000000'), // Inicialmente todas as barras são pretas
-                    }]
-                },
+                data: data,
                 options: {
                     responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
                     scales: {
-                        y: { beginAtZero: true, max: 100 }
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
             });
         }
 
-        window.onload = initChart;
+        // Inicializa o gráfico ao carregar a página
+        window.onload = atualizarGrafico;
     </script>
 </body>
-
 </html>
