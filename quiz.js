@@ -11,31 +11,21 @@ function nextQuestion(questionNumber) {
 }
 
 function submitQuiz() {
-    const answers = {
-        q1: "B",
-        q2: "A",
-        q3: "C",
-        q4: "B",
-        q5: "A",
-        q6: "D",
-        q7: "A",
-        q8: "B",
-        q9: "B",
-        q10: "D"
-    };
+    const answers = ["B", "A", "C", "B", "A", "D", "A", "B", "B", "D"]; // Array de respostas corretas
 
     let score = 0;
     const form = document.getElementById("quizForm");
     const userAnswers = new FormData(form);
 
-    for (let [question, correctAnswer] of Object.entries(answers)) {
-        if (userAnswers.get(question) === correctAnswer) {
+    answers.forEach((correctAnswer, index) => {
+        const questionNumber = `q${index + 1}`;
+        if (userAnswers.get(questionNumber) === correctAnswer) {
             score++;
         }
-    }
+    });
 
     const result = document.getElementById("result");
-    result.innerHTML = `<p>Você acertou ${score} de ${Object.keys(answers).length} perguntas!</p>`;
+    result.innerHTML = `<p>Você acertou ${score} de ${answers.length} perguntas!</p>`;
     form.style.display = "none"; // Esconde o formulário
 }
 
