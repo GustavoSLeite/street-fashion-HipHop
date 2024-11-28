@@ -88,7 +88,43 @@ function cadastrar(req, res) {
     }
 }
 
+
+
+
+function cadastrarResposta(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var acertos = req.body.qtdAcertosServer;
+    var erros = req.body.qtdErrosServer;
+    
+
+ 
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarResposta(acertos, erros)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    res.json({
+                        qtdAcertos: resultado[0].qtdAcertos , 
+                        qtdErros: resultado[0].qtdErros
+                    })
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarResposta
 }

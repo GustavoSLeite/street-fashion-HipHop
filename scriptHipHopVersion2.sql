@@ -79,5 +79,25 @@ insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado',
  foreign key (fkjokenpo) references Jokenpo(idJokenpo)
  );
  
+ select * from usuario;
+ 
+ select id,nome,email,senha from usuario;
+ 
+use aquatech;
+ alter table Quiz add column qtdAcertos int;
+ alter table Quiz add column qtdErros int;
+ 
+ alter table Jokenpo add column qtdAcertos int;
+ alter table Jokenpo add column qtdErros int;
+ 
+ describe Quiz;
+ 
+ select * from usuario;
+ select * from Quiz;
+ 
+ alter table Quiz rename column idQuiz to idPergunta;
+ 
+ 
+ describe usuario_quiz;
  
    
