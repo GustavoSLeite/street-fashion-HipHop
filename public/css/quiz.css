@@ -1,7 +1,8 @@
 /* Estilo geral do corpo */
 body {
     font-family: Arial, sans-serif;
-    background-image: url(../assets/imgs/BackgroundQuiz3.jpeg);
+    background-image: url(../assets/imgs/BackgroundQuiz3.jpeg); 
+    /* background-image: url(../assets/imgs/backgroundversion4.png); */
     background-size: cover;
     color: #fff;
     text-align: center;
@@ -55,13 +56,14 @@ input[type="radio"] {
 
 /* Botões */
 button {
-    background: rgba(231, 22, 22, 0.8);
+   
     color: #fff;
     border: none;
     padding: 5px 8px; /* Reduz o tamanho do botão */
     font-size: 12px; /* Ajusta o texto do botão */
     cursor: pointer;
     border-radius: 15px;
+     background: rgba(231, 22, 22, 0.8);
     transition: 0.3s;
     margin-top: 10px; /* Espaçamento no topo */
 }

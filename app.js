@@ -1,10 +1,9 @@
-// var ambiente_processo = 'producao';
-var ambiente_processo = 'desenvolvimento';
+// Defina o ambiente de processo (desenvolvimento ou produção)
+var ambiente_processo = 'desenvolvimento';  // ou 'producao'
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
-// Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
-// A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 
+// Carregue as variáveis de ambiente do arquivo correto
 require("dotenv").config({ path: caminho_env });
 
 var express = require("express");
@@ -15,6 +14,8 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
+// Importando as rotas para o quiz
+var quizRouter = require("./src/routes/quiz");  // Nova importação para as rotas do quiz
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
 
+// Definindo as rotas do seu app
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
@@ -35,6 +37,10 @@ app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
+// Adicionando a rota para o quiz
+app.use("/quiz", quizRouter);  // A nova rota para o quiz
+
+// Iniciando o servidor
 app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  

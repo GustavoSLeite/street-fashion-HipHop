@@ -1,22 +1,22 @@
-<!-- 
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Moda Hip Hop</title>
-    <link rel="stylesheet" href="quiz.css">
+    <title>Quiz Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/quiz.css">
 </head>
+
 <body>
     <header>
         <h1>Quiz: Moda Hip Hop</h1>
-        <p class="p-header">Teste seus conhecimentos sobre a moda Hip Hop e seus ícones!</p>
+        <p>Teste seus conhecimentos sobre a moda Hip Hop e seus ícones!</p>
     </header>
     <main>
         <form id="quizForm">
-           
-            <div class="question" id="question1">
+            <div class="question active" id="question1">
                 <p>1) Quem popularizou o uso de tênis Adidas sem cadarço na moda Hip Hop?</p>
                 <label><input type="radio" name="q1" value="A"> Tupac Shakur</label>
                 <label><input type="radio" name="q1" value="B"> Run-D.M.C.</label>
@@ -24,7 +24,7 @@
                 <label><input type="radio" name="q1" value="D"> Queen Latifah</label>
                 <button type="button" onclick="nextQuestion(1)">Próxima</button>
             </div>
-            
+
             <div class="question" id="question2">
                 <p>2) Qual rapper é conhecido por seus chapéus de balde (bucket hats) e jaquetas de couro?</p>
                 <label><input type="radio" name="q2" value="A"> LL Cool J</label>
@@ -34,7 +34,6 @@
                 <button type="button" onclick="nextQuestion(2)">Próxima</button>
             </div>
 
-            
             <div class="question" id="question3">
                 <p>3) Qual dessas artistas femininas trouxe influências futuristas e inovadoras para a moda Hip Hop?</p>
                 <label><input type="radio" name="q3" value="A"> Salt-N-Pepa</label>
@@ -80,7 +79,6 @@
                 <button type="button" onclick="nextQuestion(7)">Próxima</button>
             </div>
 
-             
             <div class="question" id="question8">
                 <p>8) Qual ícone da moda Hip Hop é conhecido por misturar alta costura com roupas urbanas e por suas colaborações com designers de moda?</p>
                 <label><input type="radio" name="q8" value="A"> Biggie Smalls</label>
@@ -99,7 +97,6 @@
                 <button type="button" onclick="nextQuestion(9)">Próxima</button>
             </div>
 
-            
             <div class="question" id="question10">
                 <p>10) Qual dessas artistas femininas é conhecida por seu estilo eclético e suas colaborações com designers de moda?</p>
                 <label><input type="radio" name="q10" value="A"> Nicki Minaj</label>
@@ -107,127 +104,6 @@
                 <label><input type="radio" name="q10" value="C"> Missy Elliott</label>
                 <label><input type="radio" name="q10" value="D"> Rihanna</label>
                 <button type="button" onclick="submitQuiz()">Finalizar</button>
-            </div>
-        </form>
-        <div id="result"></div>
-    </main>
-    <script src="quiz.js"></script>
-</body>
-</html> -->
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="./css/quiz.css">
-</head>
-
-<body>
-    <header>
-        <h1>Quiz: Moda Hip Hop</h1>
-        <p>Teste seus conhecimentos sobre a moda Hip Hop e seus ícones!</p>
-    </header>
-    <main>
-        <form id="quizForm">
-            <div class="question active" id="question1">
-                <p>1) Quem popularizou o uso de tênis Adidas sem cadarço na moda Hip Hop?</p>
-                <label><input type="radio" name="q1" value="A"> Tupac Shakur</label>
-                <label><input type="radio" name="q1" value="B"> Run-D.M.C.</label>
-                <label><input type="radio" name="q1" value="C"> Missy Elliott</label>
-                <label><input type="radio" name="q1" value="D"> Queen Latifah</label>
-                <button type="button" onclick="nextQuestion(1)">Próxima</button>
-            </div>
-
-            <div class="question" id="question2">
-                <p>2) Qual rapper é conhecido por seus chapéus de balde (bucket hats) e jaquetas de couro?</p>
-                <label><input type="radio" name="q2" value="A"> LL Cool J</label>
-                <label><input type="radio" name="q2" value="B"> Biggie Smalls</label>
-                <label><input type="radio" name="q2" value="C"> Jay-Z</label>
-                <label><input type="radio" name="q2" value="D"> Snoop Dogg</label>
-                <button type="button" onclick="nextQuestion(2)">Próxima</button>
-            </div>
-
-            <div class="question" id="question3">
-                <p>3) Qual dessas artistas femininas trouxe influências futuristas e inovadoras para a moda Hip Hop?
-                </p>
-                <label><input type="radio" name="q3" value="A"> Salt-N-Pepa</label>
-                <label><input type="radio" name="q3" value="B"> Lil' Kim</label>
-                <label><input type="radio" name="q3" value="C"> Missy Elliott</label>
-                <label><input type="radio" name="q3" value="D"> MC Lyte</label>
-                <button type="button" onclick="nextQuestion(3)">Próxima</button>
-            </div>
-
-            <div class="question" id="question4">
-                <p>4) Qual marca de moda foi fundada por Kanye West e misturou o estilo urbano com a alta moda?</p>
-                <label><input type="radio" name="q4" value="A"> Rocawear</label>
-                <label><input type="radio" name="q4" value="B"> Yeezy</label>
-                <label><input type="radio" name="q4" value="C"> Phat Farm</label>
-                <label><input type="radio" name="q4" value="D"> Sean John</label>
-                <button type="button" onclick="nextQuestion(4)">Próxima</button>
-            </div>
-
-            <div class="question" id="question5">
-                <p>5) Quem é conhecido por usar bandanas, camisas de flanela e roupas militares na moda Hip Hop?</p>
-                <label><input type="radio" name="q5" value="A"> Tupac Shakur</label>
-                <label><input type="radio" name="q5" value="B"> Pharrell Williams</label>
-                <label><input type="radio" name="q5" value="C"> Jay-Z</label>
-                <label><input type="radio" name="q5" value="D"> Kanye West</label>
-                <button type="button" onclick="nextQuestion(5)">Próxima</button>
-            </div>
-
-            <div class="question" id="question6">
-                <p>6) Qual dessas artistas femininas trouxe um estilo provocativo e ousado para a moda Hip Hop nos
-                    anos 90?</p>
-                <label><input type="radio" name="q6" value="A"> MC Lyte</label>
-                <label><input type="radio" name="q6" value="B"> Salt-N-Pepa</label>
-                <label><input type="radio" name="q6" value="C"> Missy Elliott</label>
-                <label><input type="radio" name="q6" value="D"> Lil' Kim</label>
-                <button type="button" onclick="nextQuestion(6)">Próxima</button>
-            </div>
-
-            <div class="question" id="question7">
-                <p>7) Qual grupo feminino é conhecido por popularizar o uso de jaquetas de couro e roupas oversized
-                    na moda Hip Hop?</p>
-                <label><input type="radio" name="q7" value="A"> Salt-N-Pepa</label>
-                <label><input type="radio" name="q7" value="B"> Destiny's Child</label>
-                <label><input type="radio" name="q7" value="C"> TLC</label>
-                <label><input type="radio" name="q7" value="D"> En Vogue</label>
-                <button type="button" onclick="nextQuestion(7)">Próxima</button>
-            </div>
-
-            <div class="question" id="question8">
-                <p>8) Qual ícone da moda Hip Hop é conhecido por misturar alta costura com roupas urbanas e por suas
-                    colaborações com designers de moda?</p>
-                <label><input type="radio" name="q8" value="A"> Biggie Smalls</label>
-                <label><input type="radio" name="q8" value="B"> Pharrell Williams</label>
-                <label><input type="radio" name="q8" value="C"> Tupac Shakur</label>
-                <label><input type="radio" name="q8" value="D"> LL Cool J</label>
-                <button type="button" onclick="nextQuestion(8)">Próxima</button>
-            </div>
-
-            <div class="question" id="question9">
-                <p>9) Qual rapper é famoso por seus ternos sofisticados e óculos escuros?</p>
-                <label><input type="radio" name="q9" value="A"> Snoop Dogg</label>
-                <label><input type="radio" name="q9" value="B"> Jay-Z</label>
-                <label><input type="radio" name="q9" value="C"> The Notorious B.I.G. (Biggie Smalls)</label>
-                <label><input type="radio" name="q9" value="D"> Nas</label>
-                <button type="button" onclick="nextQuestion(9)">Próxima</button>
-            </div>
-
-            <div class="question" id="question10">
-                <p>10) Qual dessas artistas femininas é conhecida por seu estilo eclético e suas colaborações com
-                    designers de moda?</p>
-                <label><input type="radio" name="q10" value="A"> Nicki Minaj</label>
-                <label><input type="radio" name="q10" value="B"> Cardi B</label>
-                <label><input type="radio" name="q10" value="C"> Missy Elliott</label>
-                <label><input type="radio" name="q10" value="D"> Rihanna</label>
-                <button type="button" onclick="cadastrarResposta()">Finalizar</button>
             </div>
         </form>
         <div id="result"></div>
@@ -239,69 +115,12 @@
             document.getElementById(`question${current + 1}`).classList.add('active');
         }
 
-        // function submitQuiz() {
-        //     const answers = ["B", "A", "C", "B", "A", "D", "A", "B", "C", "D"];
-
-        //     let score = 0;
-        //     const form = document.getElementById("quizForm");
-        //     const userAnswers = new FormData(form);
-
-        //     answers.forEach((correctAnswer, index) => {
-        //         const questionNumber = index + 1;
-        //         if (userAnswers.get(`q${questionNumber}`) === correctAnswer) {
-        //             score++;
-        //         }
-        //     });
-
-        //     const result = document.getElementById("result");
-        //     result.innerHTML = `<p class="resultado">Você acertou ${score} de ${answers.length} perguntas!</p>`;
-
-        //     form.style.display = "none";
-
-
-        //     updateChart(score, answers.length - score);
-        // }
-
-        function updateChart(correct, incorrect) {
-            const ctx = document.getElementById('quizChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Corretas', 'Incorretas'],
-                    datasets: [{
-                        data: [correct, incorrect],
-                        backgroundColor: [
-                            'rgba(75, 192, 192)', // Verde para corretas
-                            'rgba(231, 22, 22, 0.8)'  // Vermelho para incorretas
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192)',
-                            'rgba(231, 22, 22, 0.8)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Resultado do Quiz'
-                        }
-                    }
-                }
-            });
-        }
-
-        function cadastrarResposta(qtdAcertos, qtdErros) {
+        function submitQuiz() {
             const answers = ["B", "A", "C", "B", "A", "D", "A", "B", "C", "D"];
-
             let score = 0;
             const form = document.getElementById("quizForm");
             const userAnswers = new FormData(form);
+
             answers.forEach((correctAnswer, index) => {
                 const questionNumber = index + 1;
                 if (userAnswers.get(`q${questionNumber}`) === correctAnswer) {
@@ -312,63 +131,50 @@
             const result = document.getElementById("result");
             result.innerHTML = `<p class="resultado">Você acertou ${score} de ${answers.length} perguntas!</p>`;
 
+            // Supondo que o usuário já está autenticado e seu ID está armazenado no localStorage
+            const usuarioId = localStorage.getItem("usuarioId");
+
+            const erros = answers.length - score;
+
+            fetch("http://localhost:3009/quiz/salvar-resultado", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    usuarioId,
+                    acertos: score,
+                    erros,
+                }),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        alert("Resultado salvo com sucesso!");
+                    } else {
+                        alert("Erro ao salvar resultado!");
+                    }
+                })
+                .catch((error) => console.error("Erro:", error));
+
+            // Atualiza o gráfico
+            updateChart(score, erros);
             form.style.display = "none";
-
-
-            updateChart(score, answers.length - score);
         }
 
-
-
-        var qtdAcertos = score;
-        var total = 10;
-        var qtdErros = total - score;
-
-
-        fetch("/usuarios/cadastrarResposta", {
-
-            method: "POST",
-
-            headers: {
-
-                "Content-Type": "application/json",
-
-            },
-
-            body: JSON.stringify({
-
-                qtdAcertosServer: qtdAcertos,
-
-                qtdErrosServer: qtdErros
-
-
-
-            }),
-
-        })
-
-            .then(function (resposta) {
-
-                console.log("resposta: ", resposta);
-
-
-
-
-
-            })
-
-            .catch(function (resposta) {
-
-                console.log(`#ERRO: ${resposta}`);
-
-                finalizarAguardar();
-
+        function updateChart(acertos, erros) {
+            const ctx = document.getElementById('quizChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Acertos', 'Erros'],
+                    datasets: [{
+                        label: 'Resultado do Quiz',
+                        data: [acertos, erros],
+                        backgroundColor: ['green', 'red'],
+                    }]
+                }
             });
-
-
-        
-
-
+        }
     </script>
 </body>
 

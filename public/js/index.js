@@ -15,3 +15,27 @@ sr.reveal('.linha2', {
     origin: 'left'
 
 });
+
+sr.reveal('.caracteristicas', {
+    duration: 1000,
+    distance: '200px',
+    delay:200,
+    origin: 'right'
+
+});
+
+sr.reveal('.sobre-img', {
+    duration: 1000,
+    distance: '300px',
+    delay:200,
+    origin: 'right'
+
+});
+
+sr.reveal('.value', {
+    duration: 1000,
+    distance: '300px',
+    delay:300,
+    origin: 'right'
+
+});
